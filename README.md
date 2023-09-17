@@ -4,13 +4,19 @@
 node 18.17.1
 
 * Baixe os pacotes necessários. <br>
-`npm install`
+```js
+npm install
+```
 
 * Inicie o StorryBooks para ver a documentenção interativa dos componentes. <br>
-`npm run storybook`
+```js
+npm run storybook
+```
 
 * Inicie o Projeto. <br>
-`npm run dev`
+```js
+npm run dev
+```
 
 * Inicie o Json-Server <br>
 ```js
