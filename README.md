@@ -15,6 +15,10 @@ node 18.17.1
 * Inicie o Json-Server <br>
 `npx json-server --watch db.json`
 
+```json
+  console.log("teste")
+```
+
 * [Usuarios](http://localhost:3000/usuarios)<br>
 * [Produtos](http://localhost:3000/produtos)<br>
 * [Complementos](http://localhost:3000/complementos)<br>
