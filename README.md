@@ -13,10 +13,8 @@ node 18.17.1
 `npm run dev`
 
 * Inicie o Json-Server <br>
-`npx json-server --watch db.json`
-
 ```js
-  console.log("teste")
+npx json-server --watch db.json
 ```
 
 * [Usuarios](http://localhost:3000/usuarios)<br>
