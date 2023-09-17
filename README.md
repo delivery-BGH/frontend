@@ -15,7 +15,7 @@ node 18.17.1
 * Inicie o Json-Server <br>
 `npx json-server --watch db.json`
 
-```json
+```js
   console.log("teste")
 ```
 
