@@ -1,75 +1,60 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@font-face {
-    font-family: 'Montserrat';
-    src: url("../fonts/Montserrat-Light.otf") format("otf"), url("../fonts/Montserrat-Regular.otf") format("otf"), url("../fonts/Montserrat-Medium.otf") format("otf"), url("../fonts/Montserrat-SemiBold.otf") format("otf"), url("../fonts/Montserrat-Bold.otf") format("otf");
-    font-weight: 400;
-    font-display: swap;
-    font-style: normal;
-}
-
-* {
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 1.5px;
-    line-height: 1.6rem;
-}
-
+ 
 @layer base {
-    :root {
-        /*Colors*/
-        --primary: 39, 39, 39;
-        --secondary: 241, 241, 241;
-        --tertiary: 255, 255, 255;
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 346.8 77.2% 49.8%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 346.8 77.2% 49.8%;
+    --radius: 0.3rem;
+  }
+ 
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 0 0% 95%;
+    --card: 24 9.8% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 346.8 77.2% 49.8%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 346.8 77.2% 49.8%;
+  }
+}
 
-        --bg-dark: 39, 39, 39;
-        --bg-light: 255, 255, 255;
-        --bg-disabled: 187, 187, 187;
-
-        --text-light: 255, 255, 255;
-        --text-dark: 39, 39, 39;
-        --text-disabled: 127, 127, 127;
-        --text-error: 255, 48, 48;
-        --text-success: 58, 201, 34;
-
-        /* Screens */
-        --screen-mobile: 640px;
-        --screen-tablet: 1024px;
-        --screen-desktop: 1440px;
-        --screen-tv: 1920px;
-
-        /* Font Size */
-        --text-xs: 12px; 
-        --text-sm: 14px;
-        --text-md: 16px;
-        --text-lg: 18px;
-        --text-xl: 20px;
-
-        /* Title Font Size */
-        --title-md: 40px;
-        --title-lg: 48px;
-        --title-xl: 56px;
-
-        /* Spacing */
-        --spacing-none: 0px;
-        --spacing-4xs: 8px;
-        --spacing-2xs: 12px;
-        --spacing-xs: 16px;
-        --spacing-sm: 20px;
-        --spacing-md: 24px;
-        --spacing-lg: 32px;
-        --spacing-xl: 40px;
-        --spacing-2xl: 48px;
-        --spacing-4xl: 56px;
-
-        /* Border Radius */
-        --border-radius-none: 0px;
-        --border-radius-sm: 4px;
-        --border-radius-md: 8px;
-        --border-radius-lg: 16px;
-        --border-radius-xl: 32px;
-        --border-radius-2xl: 48px;
-        --border-radius-3xl: 64px;
-    }
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
