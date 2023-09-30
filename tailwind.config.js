@@ -1,79 +1,76 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
+  darkMode: ["class"],
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+	],
   theme: {
-    screens: {
-      mobile: "var(--screen-mobile)",
-      tablet: "var(--screen-tablet)",
-      desktop: "var(--screen-desktop)",
-      tv: "var(--screen-tv)",
-    },
-    fontSize: {
-      xs: "var(--text-xs)", /*12px*/
-      sm: "var(--text-sm)",
-      md: "var(--text-md)",
-      lg: "var(--text-lg)",
-      xl: "var(--text-xl)",
-      tmd: "var(--title-md)",
-      tlg: "var(--title-lg)",
-      txl: "var(--title-xl)",
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
     },
     extend: {
       colors: {
-        primary: "rgba(var(--primary), <alpha-value>)",
-        secondary: "rgba(var(--secondary), <alpha-value>)",
-        tertiary: "rgba(var(--tertiary), <alpha-value>)",
-        disabled: "rgba(var(--text-disabled), <alpha-value>)",
-      },
-      backgroundColor: {
-        dark: "rgba(var(--bg-dark), <alpha-value>)",
-        light: "rgba(var(--bg-light), <alpha-value>)",
-        disabled: "rgba(var(--bg-disabled), <alpha-value>)",
-      },
-      textColor: {
-        light: "rgba(var(--text-light), <alpha-value>)",
-        dark: "rgba(var(--text-dark), <alpha-value>)",
-        success: "rgba(var(--text-success), <alpha-value>)",
-        error: "rgba(var(--text-error), <alpha-value>)",
-        disabled: "rgba(var(--text-disabled), <alpha-value>)",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
       },
       borderRadius: {
-        none: "var(--border-radius-none)",
-        sm: "var(--border-radius-sm)",
-        md: "var(--border-radius-md)",
-        lg: "var(--border-radius-lg)",
-        xl: "var(--border-radius-xl)",
-        "2xl": "var(--border-radius-2xl)",
-        "3xl": "var(--border-radius-3xl)",
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
-      spacing: {
-        none: "var(--spacing-none) /* 0px */",
-        "4xs": "var(--spacing-4xs) /* 8px */",
-        "2xs": "var(--spacing-2xs) /* 12px */",
-        xs: "var(--spacing-xs) /* 16px */",
-        sm: "var(--spacing-sm) /* 20px */",
-        md: "var(--spacing-md) /* 24px */",
-        lg: "var(--spacing-lg) /* 32px */",
-        xl: "var(--spacing-xl) /* 40px */",
-        "2xl": "var(--spacing-2xl) /* 48px */",
-        "4xl": "var(--spacing-4xl) /* 56px */",
-        0: "var(--spacing-none) /* 0px */",
-        1: "var(--spacing-4xs) /* 8px */",
-        2: "var(--spacing-2xs) /* 12px */",
-        3: "var(--spacing-xs) /* 16px */",
-        4: "var(--spacing-sm) /* 20px */",
-        5: "var(--spacing-md) /* 24px */",
-        6: "var(--spacing-lg) /* 32px */",
-        7: "var(--spacing-xl) /* 40px */",
-        8: "var(--spacing-2xl) /* 48px */",
-        9: "var(--spacing-4xl) /* 56px */",
+      keyframes: {
+        "accordion-down": {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 }
-

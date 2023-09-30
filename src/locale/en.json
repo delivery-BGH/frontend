@@ -1,0 +1,13 @@
+{
+  "translation": {
+    "header": {
+      "home": "Home",
+      "about-me": "About-me",
+      "projects": "Projects",
+      "skills": "Skills"
+    },
+    "config": {
+      "language": "EN-US"
+    }
+  }
+}

@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import TodosOsComponentes from "./pages/TodosOsComponentes";
-import Login from "./pages/Login";
-import CadastroCliente from "./pages/CadastroCliente";
-import CadastroProduto from "./pages/CadastroProduto";
-import Menu from "./components/Menu";
+import TodosOsComponentes from "../pages/TodosOsComponentes";
+import Login from "../pages/Login";
+import CadastroCliente from "../pages/CadastroCliente";
+import CadastroProduto from "../pages/CadastroProduto";
+import Menu from "../components/Menu";
 
 export const router = createBrowserRouter([
   {
