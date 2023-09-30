@@ -89,6 +89,26 @@
     {
       "id": 3,
       "nome": "bebidas"
+    },
+    {
+      "id": 4,
+      "nome": "Lanche"
+    },
+    {
+      "id": 5,
+      "nome": "Sobremesa"
+    },
+    {
+      "id": 6,
+      "nome": "Bebidas"
+    },
+    {
+      "id": 7,
+      "nome": "Marmitas"
+    },
+    {
+      "id": 8,
+      "nome": "Frios"
     }
   ],
   "statusDoPedido": [
