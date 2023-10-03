@@ -9,8 +9,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescript
 import { useNavigate } from "react-router-dom";
 
 
-
-export const CadastroProdutos = () => {
+const CadastroProdutos = () => {
   const [prom, setProm] = useState(false)
   const [card, setCard] = useState(false)
   const [status, setStatus] = useState(false)
@@ -166,3 +165,6 @@ export const CadastroProdutos = () => {
     </div>
   );
 };
+
+
+export default CadastroProdutos;
