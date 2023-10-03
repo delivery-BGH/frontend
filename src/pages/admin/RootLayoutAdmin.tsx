@@ -2,10 +2,10 @@ import { Link, Outlet } from "react-router-dom";
 
 export default function RootLayoutAdmin() {
   return (
-    <>
-      <header>
+    <div className="p-6">
+      <header className="flex flex-row w-full justify-between">
         <Link to="/" className="logo">Delivery BGH</Link>
-        <nav>
+        <nav className="flex flex-row gap-2">
           <Link to="/">Início</Link>
           <Link to="/produtos">Produtos</Link>
         </nav>
@@ -13,9 +13,9 @@ export default function RootLayoutAdmin() {
       <div>
         <Outlet />
       </div>
-      <footer>
+      <footer className="fixed bottom-0">
         Todos os direitos reservados por BGH
       </footer>
-    </>
+    </div>
   )
 }

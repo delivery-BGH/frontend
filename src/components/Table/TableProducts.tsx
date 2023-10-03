@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 
 export default function TableProdutos() {
-  const [produtos, setProdutos] = useState([]); 
+  const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
     getProdutos();
@@ -22,39 +24,40 @@ export default function TableProdutos() {
   };
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>Preço</th>
-          <th>Descrição</th>
-          <th>Url</th>
-          <th>Preço Promocional</th>
-          <th>Categoria</th>
-          <th>Promoção ativada</th>
-          <th>Disponível no cardápio</th>
-        </tr>
-      </thead>
-      <tbody>
-        {produtos.map((item) => (
-          <tr key={item.id}>
-            <td>{item.id}</td>
-            <td>{item.nome}</td>
-            <td>{item.preco} unid.</td>
-            <td>{item.descricao}</td>
-            <td>{item.urlImg}</td>
-            <td>{item.precoPromocional}</td>
-            <td>{item.categoria}</td>
-            <td>{item.promocaoAtiva ? "Sim" : "Não"}</td>
-            <td>{item.disponivel ? "Sim" : "Não"}</td>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>ID</TableHead >
+          <TableHead>Nome</TableHead >
+          <TableHead>Preço</TableHead >
+          <TableHead>Descrição</TableHead >
+          <TableHead>Url</TableHead >
+          <TableHead>Preço Promocional</TableHead >
+          <TableHead>Categoria</TableHead >
+          <TableHead>Promoção ativada</TableHead >
+          <TableHead>Disponível no cardápio</TableHead >
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {produtos.map((item: any) => (
+          <TableRow key={item.id}>
+            <TableCell>{item.id}</TableCell >
+            <TableCell>{item.nome}</TableCell >
+            <TableCell>{item.preco} unid.</TableCell >
+            <TableCell>{item.descricao}</TableCell >
+            <TableCell>
+              <div className="h-[50px] w-[50px] bg-center bg-no-repeat bg-contain" style={{ backgroundImage: `url('${item.urlImg}')` }} />
+            </TableCell >
+            <TableCell>{item.precoPromocional}</TableCell >
+            <TableCell>{item.categoria}</TableCell >
+            <TableCell>{item.promocaoAtiva ? "Sim" : "Não"}</TableCell >
+            <TableCell>{item.disponivel ? "Sim" : "Não"}</TableCell >
             <td>
-              <Link to={`/produtos/${item.id}`}>Ver</Link>
-              <Link to={`/produtos/${item.id}/update`}>Atualizar</Link>
+              <Link to={`/produtos/${item.id}`}>Detalhes</Link>
             </td>
-          </tr>
+          </TableRow>
         ))}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   );
 }

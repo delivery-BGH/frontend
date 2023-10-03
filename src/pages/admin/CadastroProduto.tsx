@@ -5,10 +5,17 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod/dist/zod.js";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox"
+import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { useNavigate } from "react-router-dom";
+
+
 
 export const CadastroProdutos = () => {
   const [prom, setProm] = useState(false)
   const [card, setCard] = useState(false)
+  const [status, setStatus] = useState(false)
+  const navigate = useNavigate();
+
 
   const createUserFormSchema = z.object({
     nome: z.string().nonempty("Nome obrigatório"),
@@ -27,8 +34,8 @@ export const CadastroProdutos = () => {
         message: "URL inválida",
       }
     ),
-    promocaoAtiva: z.string(),
-    disponivel: z.string()
+    // promocaoAtiva: z.string(),
+    // disponivel: z.string()
   });
 
   const {
@@ -40,9 +47,8 @@ export const CadastroProdutos = () => {
     mode: "all",
     criteriaMode: "all",
   });
-  
-  type createUserFormData = z.infer<typeof createUserFormSchema>;
 
+  type createUserFormData = z.infer<typeof createUserFormSchema>;
 
   async function createProduto(data: any) {
     const x = { ...data, prom, card }
@@ -51,9 +57,12 @@ export const CadastroProdutos = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ ...data })
+      body: JSON.stringify({ ...data, disponivel: card, promocao: prom })
     })
-    console.log(response);
+
+    setStatus(response.status === 201 ? true : false)
+
+
     console.log("enviado para o banco: ", x)
   }
 
@@ -69,9 +78,8 @@ export const CadastroProdutos = () => {
     setCategorias(countries)
   }
 
-
   return (
-    <>
+    <div className=" w-4/5">
       <form onSubmit={handleSubmit(createProduto)}>
         <div>
           <label htmlFor="nome">Nome:</label>
@@ -124,11 +132,11 @@ export const CadastroProdutos = () => {
         <span>{errors.categoria?.message}</span>
         <div>
           <h4>Ativar promoção</h4>
-          <Checkbox onClick={() => { setProm(!prom) }} {...register("promocaoAtiva")}/>
+          <Checkbox onClick={() => { setProm(!prom) }} />
         </div>
         <div className="">
           <h4>Liberar no Cardápio</h4>
-          <Checkbox onClick={() => { setCard(!card) }} {...register("disponivel")}/>
+          <Checkbox onClick={() => { setCard(!card) }} />
         </div>
         <button
           type="submit"
@@ -137,6 +145,24 @@ export const CadastroProdutos = () => {
           Cadastrar
         </button>
       </form>
-    </>
+
+      <AlertDialog open={status}>
+        <AlertDialogContent >
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete your account
+              and remove your data from our servers.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={() => {
+              navigate('/');
+              setStatus(false);
+            }}>Continue</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </div>
   );
 };
