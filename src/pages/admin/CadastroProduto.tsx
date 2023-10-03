@@ -14,9 +14,9 @@ export const CadastroProdutos = () => {
     nome: z.string().nonempty("Nome obrigatório"),
     preco: z.string().nonempty("Obrigatório"),
     descricao: z.string().nonempty("Obrigatório"),
-    precoProm: z.string().nonempty("Obrigatório"),
-    categoria: z.string(),
-    url: z.string().refine(
+    precoPromocional: z.string().nonempty("Obrigatório"),
+    categoria: z.string().nonempty("Informe uma categoria"),
+    urlImg: z.string().refine(
       (value) => {
         // Adicione sua lógica de validação personalizada para a URL aqui
         // Por exemplo, você pode usar uma expressão regular para verificar se é uma URL válida.
@@ -27,6 +27,8 @@ export const CadastroProdutos = () => {
         message: "URL inválida",
       }
     ),
+    promocaoAtiva: z.string(),
+    disponivel: z.string()
   });
 
   const {
@@ -42,8 +44,16 @@ export const CadastroProdutos = () => {
   type createUserFormData = z.infer<typeof createUserFormSchema>;
 
 
-  function createProduto(data: any) {
+  async function createProduto(data: any) {
     const x = { ...data, prom, card }
+    const response = await fetch('http://localhost:3000/produtos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ...data })
+    })
+    console.log(response);
     console.log("enviado para o banco: ", x)
   }
 
@@ -80,18 +90,19 @@ export const CadastroProdutos = () => {
         </div>
         <div>
           <label htmlFor="nome">Url da imagem</label>
-          <Input type="text" {...register("url")} />
+          <Input type="text" {...register("urlImg")} />
         </div>
         <div>
           <label htmlFor="nome">Preço Promocional:</label>
-          <Input type="number" {...register("precoProm")} />
-          {errors.precoProm && <span>{errors.precoProm.message}</span>}
+          <Input type="number" {...register("precoPromocional")} />
+          {errors.precoPromocional && <span>{errors.precoPromocional.message}</span>}
         </div>
         <div>
           <label htmlFor="category">Categoria</label>
           <select
             className="bg-background"
             id="category"
+            required
             {...register("categoria")}
           // value={category.name}
           >
@@ -113,11 +124,11 @@ export const CadastroProdutos = () => {
         <span>{errors.categoria?.message}</span>
         <div>
           <h4>Ativar promoção</h4>
-          <Checkbox onClick={() => { setProm(!prom) }} />
+          <Checkbox onClick={() => { setProm(!prom) }} {...register("promocaoAtiva")}/>
         </div>
         <div className="">
           <h4>Liberar no Cardápio</h4>
-          <Checkbox onClick={() => { setCard(!card) }} />
+          <Checkbox onClick={() => { setCard(!card) }} {...register("disponivel")}/>
         </div>
         <button
           type="submit"
