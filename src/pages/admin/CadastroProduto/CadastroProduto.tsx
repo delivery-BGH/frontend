@@ -6,12 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios"
 import { useCreateProduto } from "@/forms/CadastroProduto/useCadastroProduto";
+import { cn } from "@/lib/utils";
 
 const CadastroProdutos = () => {
-  const { handleSubmit, errors, createProduto, register } = useCreateProduto()
-  const [prom, setProm] = useState(false)
-  const [card, setCard] = useState(false)
-  const [status, setStatus] = useState(false)
+  const { createProduto, register, handleSubmit, errors, loading, erroApi, status: statusForm } = useCreateProduto();
+  const [prom, setProm] = useState(false);
+  const [card, setCard] = useState(false);
+  const [status, setStatus] = useState(statusForm);
   const navigate = useNavigate();
   const [categorias, setCategorias] = useState<Array<unknown>>()
 
@@ -28,6 +29,7 @@ const CadastroProdutos = () => {
 
   return (
     <div className=" w-4/5">
+      <div className={cn("h-[45px] w-[75px] border-[1px] border-red-600 scale-0", loading && "scale-100")}>Loading</div>
       <form onSubmit={handleSubmit(submit)}>
         <div>
           <label htmlFor="nome">Nome:</label>
@@ -94,7 +96,7 @@ const CadastroProdutos = () => {
         </button>
       </form>
 
-      <AlertDialog open={status}>
+      <AlertDialog open={statusForm}>
         <AlertDialogContent >
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
