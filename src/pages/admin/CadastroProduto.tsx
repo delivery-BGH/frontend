@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod/dist/zod.js";
+
+
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox"
+<<<<<<< Updated upstream:src/pages/admin/CadastroProduto.tsx
 
 export const CadastroProdutos = () => {
   const [prom, setProm] = useState(false)
@@ -70,6 +69,21 @@ export const CadastroProdutos = () => {
   }
 
 
+=======
+import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { categorias, useCreateProduto } from "@/forms/CadastroProduto/useCadastroProduto";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+
+
+export const CadastroProdutos = () => {
+   const {createProduto, register, handleSubmit, errors} = useCreateProduto()
+   const [prom, setProm] = useState(false)
+   const [card, setCard] = useState(false)
+   const [status, setStatus] = useState(false)
+   const navigate = useNavigate();
+>>>>>>> Stashed changes:src/pages/admin/CadastroProduto/CadastroProduto.tsx
   return (
     <>
       <form onSubmit={handleSubmit(createProduto)}>
