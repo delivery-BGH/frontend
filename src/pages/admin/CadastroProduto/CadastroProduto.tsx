@@ -1,85 +1,34 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod/dist/zod.js";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox"
 import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { useNavigate } from "react-router-dom";
-
+import { useEffect, useState } from "react";
+import axios from "axios"
+import { useCreateProduto } from "@/forms/CadastroProduto/useCadastroProduto";
 
 const CadastroProdutos = () => {
+  const { handleSubmit, errors, createProduto, register } = useCreateProduto()
   const [prom, setProm] = useState(false)
   const [card, setCard] = useState(false)
   const [status, setStatus] = useState(false)
   const navigate = useNavigate();
+  const [categorias, setCategorias] = useState<Array<unknown>>()
 
-
-  const createUserFormSchema = z.object({
-    nome: z.string().nonempty("Nome obrigatório"),
-    preco: z.string().nonempty("Obrigatório"),
-    descricao: z.string().nonempty("Obrigatório"),
-    precoPromocional: z.string().nonempty("Obrigatório"),
-    categoria: z.string().nonempty("Informe uma categoria"),
-    urlImg: z.string().refine(
-      (value) => {
-        // Adicione sua lógica de validação personalizada para a URL aqui
-        // Por exemplo, você pode usar uma expressão regular para verificar se é uma URL válida.
-        // Aqui está um exemplo simples que verifica se a URL começa com "http://" ou "https://":
-        return value.startsWith("http://") || value.startsWith("https://");
-      },
-      {
-        message: "URL inválida",
-      }
-    ),
-    // promocaoAtiva: z.string(),
-    // disponivel: z.string()
-  });
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<createUserFormData>({
-    resolver: zodResolver(createUserFormSchema),
-    mode: "all",
-    criteriaMode: "all",
-  });
-
-  type createUserFormData = z.infer<typeof createUserFormSchema>;
-
-  async function createProduto(data: any) {
-    const x = { ...data, prom, card }
-    const response = await fetch('http://localhost:3000/produtos', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ ...data, disponivel: card, promocao: prom })
-    })
-
-    setStatus(response.status === 201 ? true : false)
-
-
-    console.log("enviado para o banco: ", x)
-  }
-
-  const [categorias, setCategorias] = useState<any>()
   useEffect(() => {
-    getCategorias()
-
+    axios.get("http://localhost:3000/categorias")
+      .then((res) => { setCategorias(res.data) })
+      .catch(() => { })
+      .finally(() => { })
   }, [])
 
-  const getCategorias = async () => {
-    const response = await fetch('http://localhost:3000/categorias')
-    const countries = await response.json()
-    setCategorias(countries)
+  const submit = (data: any) => {
+    createProduto(data, card, prom)
   }
 
   return (
     <div className=" w-4/5">
-      <form onSubmit={handleSubmit(createProduto)}>
+      <form onSubmit={handleSubmit(submit)}>
         <div>
           <label htmlFor="nome">Nome:</label>
           <Input type="text" {...register("nome")} />
