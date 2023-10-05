@@ -1,92 +1,36 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
-
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox"
-<<<<<<< Updated upstream:src/pages/admin/CadastroProduto.tsx
+import { useCreateProduto } from "@/forms/CadastroProduto/useCadastroProduto";
+import { useEffect, useState } from "react";
+import axios from 'axios';
 
 export const CadastroProdutos = () => {
+  const { createProduto, register, handleSubmit, errors } = useCreateProduto()
   const [prom, setProm] = useState(false)
   const [card, setCard] = useState(false)
+  const [categorias, setCategorias] = useState<Array<unknown>>();
 
-  const createUserFormSchema = z.object({
-    nome: z.string().nonempty("Nome obrigatório"),
-    preco: z.string().nonempty("Obrigatório"),
-    descricao: z.string().nonempty("Obrigatório"),
-    precoPromocional: z.string().nonempty("Obrigatório"),
-    categoria: z.string().nonempty("Informe uma categoria"),
-    urlImg: z.string().refine(
-      (value) => {
-        // Adicione sua lógica de validação personalizada para a URL aqui
-        // Por exemplo, você pode usar uma expressão regular para verificar se é uma URL válida.
-        // Aqui está um exemplo simples que verifica se a URL começa com "http://" ou "https://":
-        return value.startsWith("http://") || value.startsWith("https://");
-      },
-      {
-        message: "URL inválida",
-      }
-    ),
-    promocaoAtiva: z.string(),
-    disponivel: z.string()
-  });
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<createUserFormData>({
-    resolver: zodResolver(createUserFormSchema),
-    mode: "all",
-    criteriaMode: "all",
-  });
-  
-  type createUserFormData = z.infer<typeof createUserFormSchema>;
-
-
-  async function createProduto(data: any) {
-    const x = { ...data, prom, card }
-    const response = await fetch('http://localhost:3000/produtos', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ ...data })
-    })
-    console.log(response);
-    console.log("enviado para o banco: ", x)
-  }
-
-  const [categorias, setCategorias] = useState<any>()
   useEffect(() => {
-    getCategorias()
+    axios.get('http://localhost:3000/categorias')
+      .then((res) => {
+        setCategorias(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
 
+      })
   }, [])
 
-  const getCategorias = async () => {
-    const response = await fetch('http://localhost:3000/categorias')
-    const countries = await response.json()
-    setCategorias(countries)
+  const x = (data: unknown) => {
+    createProduto(data, card, prom)
   }
 
-
-=======
-import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { categorias, useCreateProduto } from "@/forms/CadastroProduto/useCadastroProduto";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-
-
-export const CadastroProdutos = () => {
-   const {createProduto, register, handleSubmit, errors} = useCreateProduto()
-   const [prom, setProm] = useState(false)
-   const [card, setCard] = useState(false)
-   const [status, setStatus] = useState(false)
-   const navigate = useNavigate();
->>>>>>> Stashed changes:src/pages/admin/CadastroProduto/CadastroProduto.tsx
   return (
     <>
-      <form onSubmit={handleSubmit(createProduto)}>
+      <form onSubmit={handleSubmit(x)}>
         <div>
           <label htmlFor="nome">Nome:</label>
           <Input type="text" {...register("nome")} />
@@ -124,7 +68,7 @@ export const CadastroProdutos = () => {
               Selecione uma categoria...
             </option>
 
-            {categorias && categorias.map((category: any, index: number) => (
+            {categorias && categorias?.map((category: any, index: number) => (
               <option
                 className="bg-background"
                 key={index}
@@ -138,11 +82,11 @@ export const CadastroProdutos = () => {
         <span>{errors.categoria?.message}</span>
         <div>
           <h4>Ativar promoção</h4>
-          <Checkbox onClick={() => { setProm(!prom) }} {...register("promocaoAtiva")}/>
+          <Checkbox onClick={() => { setProm(!prom) }} />
         </div>
         <div className="">
           <h4>Liberar no Cardápio</h4>
-          <Checkbox onClick={() => { setCard(!card) }} {...register("disponivel")}/>
+          <Checkbox onClick={() => { setCard(!card) }} />
         </div>
         <button
           type="submit"
