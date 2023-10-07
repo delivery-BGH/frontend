@@ -40,11 +40,11 @@ export default function TableProdutos() {
       </TableHeader>
       <TableBody>
         {produtos.map((item: any) => (
-          <TableRow key={item.id}>
-            <TableCell>{item.id}</TableCell >
-            <TableCell>{item.nome}</TableCell >
-            <TableCell>{item.preco} unid.</TableCell >
-            <TableCell>{item.descricao}</TableCell >
+          <TableRow key={item._id}>
+            <TableCell>{item._id}</TableCell >
+            <TableCell>{item.name}</TableCell >
+            <TableCell>{item.price} unid.</TableCell >
+            <TableCell>{item.description}</TableCell >
             <TableCell>
               <div className="h-[50px] w-[50px] bg-center bg-no-repeat bg-contain" style={{ backgroundImage: `url('${item.urlImg}')` }} />
             </TableCell >

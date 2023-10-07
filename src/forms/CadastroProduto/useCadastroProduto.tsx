@@ -6,10 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod/dist/zod.js";
 import { useState } from "react";
 
 export const useCreateProduto = () => {
-  const [status, setStatus] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [erroApi, setErroApi] = useState("")
-
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState(false);
+  
   const {
     register,
     handleSubmit,
