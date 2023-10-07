@@ -33,26 +33,26 @@ const CadastroProdutos = () => {
       <form onSubmit={handleSubmit(submit)}>
         <div>
           <label htmlFor="nome">Nome:</label>
-          <Input type="text" {...register("name")} />
+          <Input type="text" id="nome" {...register("name")} />
           {errors.name && <span>{errors.name.message}</span>}
         </div>
         <div>
-          <label htmlFor="nome">Preço:</label>
-          <Input type="number" {...register("price")} />
+          <label htmlFor="preco">Preço:</label>
+          <Input type="number" id="preco" {...register("price")} />
           {errors.price && <span>{errors.price.message}</span>}
         </div>
         <div>
-          <label htmlFor="nome">Descrição:</label>
-          <Input type="text" {...register("description")} />
+          <label htmlFor="desc">Descrição:</label>
+          <Input type="text" id="desc" {...register("description")} />
           {errors.description && <span>{errors.description.message}</span>}
         </div>
         <div>
-          <label htmlFor="nome">Url da imagem</label>
-          <Input type="text" {...register("img")} />
+          <label htmlFor="img">Url da imagem</label>
+          <Input type="text" id="img" {...register("img")} />
         </div>
         <div>
-          <label htmlFor="nome">Preço Promocional:</label>
-          <Input type="number" {...register("promotionalPrice")} />
+          <label htmlFor="precoProm">Preço Promocional:</label>
+          <Input type="number" id="precoProm" {...register("promotionalPrice")} />
           {errors.promotionalPrice && <span>{errors.promotionalPrice.message}</span>}
         </div>
         <div>
