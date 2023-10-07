@@ -1,44 +1,63 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createUserFormSchema } from "./shcema";
-import { createUserFormData } from "./types";
+import { useState } from "react";
+import { createProductFormSchema } from "./shcema";
+
+import { createProductForm } from "./types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod/dist/zod.js";
-import { useState } from "react";
+import axios from "axios";
 
 export const useCreateProduto = () => {
   const [loading, setLoading] = useState(false);
+
   const [status, setStatus] = useState(false);
   
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<createUserFormData, { AtivoNoCardapio: boolean, prom: boolean }>({
-    resolver: zodResolver(createUserFormSchema),
+  } = useForm<createProductForm>({
+    resolver: zodResolver(createProductFormSchema),
     mode: "all",
     criteriaMode: "all",
   });
 
-
-  const createProduto = (data: any, card: boolean, prom: boolean) => {
+  async function createProduto(data: any, card: boolean, prom: boolean) {
     setLoading(true)
-    fetch('http://localhost:3000/produtos', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ ...data, card, prom })
-    })
+    const x = { ...data, card, prom }
+    axios.post('http://localhost:3000/product', { ...data, avaliable: card, activePromotion: prom })
       .then((res) => {
-        setStatus(res.status === 201 ? true : false);
+        setStatus(res.status === 201 ? true : false)
       })
       .catch((err) => {
-        setErroApi(err.message)
+        console.log(err)
       })
       .finally(() => {
         setLoading(false)
       })
+    // const response = await fetch('http://localhost:3000/product', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({ ...data, })
+    // })
+
+
+
+    console.log("enviado para o banco: ", x)
+
   }
 
-  return { createProduto, register, handleSubmit, errors, loading, erroApi, status }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return { createProduto, register, handleSubmit, errors, status, loading }
 }
+
+
+
+/*export const getCategorias = async () => {
+  const response = await fetch('http://localhost:3000/category')
+  const countries = await response.json()
+  setCategorias(countries)
+}*/

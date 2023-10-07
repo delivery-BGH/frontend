@@ -12,7 +12,7 @@ export default function TableProdutos() {
 
   const getProdutos = async () => {
     try {
-      const response = await fetch("http://localhost:3000/produtos");
+      const response = await fetch("http://localhost:3000/product");
       if (!response.ok) {
         throw new Error("Não foi possível buscar os produtos.");
       }
@@ -40,18 +40,19 @@ export default function TableProdutos() {
       </TableHeader>
       <TableBody>
         {produtos.map((item: any) => (
+
           <TableRow key={item._id}>
             <TableCell>{item._id}</TableCell >
             <TableCell>{item.name}</TableCell >
             <TableCell>{item.price} unid.</TableCell >
             <TableCell>{item.description}</TableCell >
             <TableCell>
-              <div className="h-[50px] w-[50px] bg-center bg-no-repeat bg-contain" style={{ backgroundImage: `url('${item.urlImg}')` }} />
+              <div className="h-[50px] w-[50px] bg-center bg-no-repeat bg-contain" style={{ backgroundImage: `url('${item.img}')` }} />
             </TableCell >
-            <TableCell>{item.precoPromocional}</TableCell >
-            <TableCell>{item.categoria}</TableCell >
-            <TableCell>{item.promocaoAtiva ? "Sim" : "Não"}</TableCell >
-            <TableCell>{item.disponivel ? "Sim" : "Não"}</TableCell >
+            <TableCell>{item.promotionalPrice}</TableCell >
+            <TableCell>{item.category}</TableCell >
+            <TableCell>{item.avaliable ? "Sim" : "Não"}</TableCell >
+            <TableCell>{item.activePromotion ? "Sim" : "Não"}</TableCell >
             <td>
               <Link to={`/produtos/${item.id}`}>Detalhes</Link>
             </td>

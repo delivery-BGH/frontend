@@ -9,7 +9,7 @@ import { useCreateProduto } from "@/forms/CadastroProduto/useCadastroProduto";
 import { cn } from "@/lib/utils";
 
 const CadastroProdutos = () => {
-  const { createProduto, register, handleSubmit, errors, loading, erroApi, status: statusForm } = useCreateProduto();
+  const { createProduto, register, handleSubmit, errors, loading, status: statusForm } = useCreateProduto();
   const [prom, setProm] = useState(false);
   const [card, setCard] = useState(false);
   const [status, setStatus] = useState(statusForm);
@@ -17,7 +17,7 @@ const CadastroProdutos = () => {
   const [categorias, setCategorias] = useState<Array<unknown>>()
 
   useEffect(() => {
-    axios.get("http://localhost:3000/categorias")
+    axios.get("http://localhost:3000/category")
       .then((res) => { setCategorias(res.data) })
       .catch(() => { })
       .finally(() => { })
@@ -33,27 +33,27 @@ const CadastroProdutos = () => {
       <form onSubmit={handleSubmit(submit)}>
         <div>
           <label htmlFor="nome">Nome:</label>
-          <Input type="text" {...register("nome")} />
-          {errors.nome && <span>{errors.nome.message}</span>}
+          <Input type="text" {...register("name")} />
+          {errors.name && <span>{errors.name.message}</span>}
         </div>
         <div>
           <label htmlFor="nome">Preço:</label>
-          <Input type="number" {...register("preco")} />
-          {errors.preco && <span>{errors.preco.message}</span>}
+          <Input type="number" {...register("price")} />
+          {errors.price && <span>{errors.price.message}</span>}
         </div>
         <div>
           <label htmlFor="nome">Descrição:</label>
-          <Input type="text" {...register("descricao")} />
-          {errors.descricao && <span>{errors.descricao.message}</span>}
+          <Input type="text" {...register("description")} />
+          {errors.description && <span>{errors.description.message}</span>}
         </div>
         <div>
           <label htmlFor="nome">Url da imagem</label>
-          <Input type="text" {...register("urlImg")} />
+          <Input type="text" {...register("img")} />
         </div>
         <div>
           <label htmlFor="nome">Preço Promocional:</label>
-          <Input type="number" {...register("precoPromocional")} />
-          {errors.precoPromocional && <span>{errors.precoPromocional.message}</span>}
+          <Input type="number" {...register("promotionalPrice")} />
+          {errors.promotionalPrice && <span>{errors.promotionalPrice.message}</span>}
         </div>
         <div>
           <label htmlFor="category">Categoria</label>
@@ -61,7 +61,7 @@ const CadastroProdutos = () => {
             className="bg-background"
             id="category"
             required
-            {...register("categoria")}
+            {...register("category")}
           // value={category.name}
           >
             <option disabled value="">
@@ -72,14 +72,14 @@ const CadastroProdutos = () => {
               <option
                 className="bg-background"
                 key={index}
-                value={category.nome}
+                value={category.name}
               >
-                {category.nome}
+                {category.name}
               </option>
             ))}
           </select>
         </div>
-        <span>{errors.categoria?.message}</span>
+        <span>{errors.category?.message}</span>
         <div>
           <h4>Ativar promoção</h4>
           <Checkbox onClick={() => { setProm(!prom) }} />

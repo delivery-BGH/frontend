@@ -282,6 +282,15 @@
       "card": true,
       "prom": true,
       "id": 28
+    },
+    {
+      "nome": "Espeto",
+      "preco": "15",
+      "descricao": "espetinhohummm",
+      "precoPromocional": "12",
+      "categoria": "pratos",
+      "urlImg": "https://e1.pxfuel.com/desktop-wallpaper/572/661/desktop-wallpaper-baldur-s-gate-3-and-orcs-must-die-3-are-due-in-2020-according-to-google-stadia-press-release-baldurs-gate-iii.jpg",
+      "id": 29
     }
   ],
   "complementos": [
