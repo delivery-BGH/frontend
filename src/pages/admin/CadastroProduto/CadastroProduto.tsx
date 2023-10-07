@@ -99,10 +99,9 @@ const CadastroProdutos = () => {
       <AlertDialog open={statusForm}>
         <AlertDialogContent >
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogTitle>Gabriel é muito lindo!</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your account
-              and remove your data from our servers.
+              Gabriel é muito lindo!
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
