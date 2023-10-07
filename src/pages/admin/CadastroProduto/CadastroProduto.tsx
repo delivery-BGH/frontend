@@ -61,7 +61,7 @@ const CadastroProdutos = () => {
             className="bg-background"
             id="category"
             required
-            {...register("categoria")}
+            {...register("category")}
           // value={category.name}
           >
             <option disabled value="">

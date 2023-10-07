@@ -1,4 +1,4 @@
 import { z } from "zod";
-import { createUserFormSchema } from "./shcema";
+import { createProductFormSchema } from "./shcema";
 
-export type createUserFormData = z.infer<typeof createUserFormSchema>;
+export type createProductForm = z.infer<typeof createProductFormSchema>;
