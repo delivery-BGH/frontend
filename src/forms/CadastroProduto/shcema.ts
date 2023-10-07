@@ -1,12 +1,12 @@
-import { z } from "zod";
+import {  z } from "zod";
 
 export const createUserFormSchema = z.object({
-    nome: z.string().nonempty("Nome obrigatório"),
-    preco: z.string().nonempty("Obrigatório"),
-    descricao: z.string().nonempty("Obrigatório"),
-    precoPromocional: z.string().nonempty("Obrigatório"),
-    categoria: z.string().nonempty("Informe uma categoria"),
-    urlImg: z.string().refine(
+  name: z.string().nonempty("Nome obrigatório"),
+  price: z.coerce.number()._parse(),
+  description: z.string().nonempty("Obrigatório"),
+  promotionalPrice: z.number(),
+  category: z.string().nonempty("Informe uma categoria"),
+  img: z.string().refine(
       (value) => {
         // Adicione sua lógica de validação personalizada para a URL aqui
         // Por exemplo, você pode usar uma expressão regular para verificar se é uma URL válida.
