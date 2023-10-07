@@ -40,7 +40,8 @@ export default function TableProdutos() {
       </TableHeader>
       <TableBody>
         {produtos.map((item: any) => (
-          <TableRow key={item.id}>
+
+          <TableRow key={item._id}>
             <TableCell>{item._id}</TableCell >
             <TableCell>{item.name}</TableCell >
             <TableCell>{item.price} unid.</TableCell >

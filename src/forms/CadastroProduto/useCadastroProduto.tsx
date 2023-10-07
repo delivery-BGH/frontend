@@ -9,7 +9,10 @@ import axios from "axios";
 
 export const useCreateProduto = () => {
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState(false)
+
+  const [status, setStatus] = useState(false);
+  
+
   const {
     register,
     handleSubmit,
