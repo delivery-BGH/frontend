@@ -55,7 +55,7 @@ const CadastroProdutos = () => {
           <Input type="number" id="precoProm" {...register("promotionalPrice")} />
           {errors.promotionalPrice && <span>{errors.promotionalPrice.message}</span>}
         </div>
-        <div>
+        <div className="flex flex-row gap-2" >
           <label htmlFor="category">Categoria</label>
           <select
             className="bg-background"

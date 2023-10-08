@@ -25,7 +25,7 @@ export const useCreateProduto = () => {
 
   async function createProduto(data: any, card: boolean, prom: boolean) {
     setLoading(true)
-    const x = { ...data, card, prom }
+    const x = { ...data, prom, card}
     axios.post('http://localhost:3000/product', { ...data, avaliable: card, activePromotion: prom })
       .then((res) => {
         setStatus(res.status === 201 ? true : false)
