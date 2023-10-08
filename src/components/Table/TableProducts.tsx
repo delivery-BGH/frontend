@@ -51,7 +51,7 @@ export default function TableProdutos() {
             </TableCell >
             <TableCell>R${item.promotionalPrice}</TableCell >
             <TableCell>{item.category.name}</TableCell >
-            <TableCell>{item.avaliable ? "Sim" : "Não"}</TableCell >
+            <TableCell>{item.avaliable ? "Sim" : "Não"}</TableCell>
             <TableCell>{item.activePromotion ? "Sim" : "Não"}</TableCell >
             <td>
               <Link to={`/produtos/${item._id}`}>Detalhes</Link>
