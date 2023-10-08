@@ -75,12 +75,13 @@ export function UpdateProduto() {
         <span>{errors.category?.message}</span>
         <div>
           <h4>Ativar promoção</h4>
-          <Checkbox {...register("activePromotion")} />
+          {/* <Checkbox {...register("activePromotion")} /> */}
+          <input type="checkbox" {...register("activePromotion")} />
           <span>{errors.activePromotion?.message}</span>
         </div>
         <div className="">
           <h4>Liberar no Cardápio</h4>
-          <Checkbox {...register("avaliable")} onClick={(ev) => console.log(ev.target)}/>
+          <input type="checkbox" {...register("avaliable")} />
           <span>{errors.avaliable?.message}</span>
         </div>
         <button
