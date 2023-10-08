@@ -23,10 +23,10 @@ export const useCreateProduto = () => {
     criteriaMode: "all",
   });
 
-  async function createProduto(data: any, card: boolean, prom: boolean) {
+  async function createProduto(data: any, prom: boolean, card: boolean) {
     setLoading(true)
     const x = { ...data, prom, card}
-    axios.post('http://localhost:3000/product', { ...data, avaliable: card, activePromotion: prom })
+    axios.post('http://localhost:3000/product', { ...data, activePromotion: prom, avaliable: card })
       .then((res) => {
         setStatus(res.status === 201 ? true : false)
       })
