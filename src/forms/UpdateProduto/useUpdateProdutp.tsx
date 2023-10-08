@@ -12,7 +12,7 @@ import { updateProductSchema } from "./schema";
 
 export const useUpdateProduto = () => {
   const params = useParams<{ id: string }>()
-  const [categoryX, setCategoryX] = useState<string>("")
+  //const [categoryX, setCategoryX] = useState<{_id: string, name: string, description: string}>()
 
   const {
     setValue,
@@ -34,10 +34,10 @@ export const useUpdateProduto = () => {
         setValue('description', res.data.description)
         setValue('img', res.data.img)
         setValue('promotionalPrice', res.data.promotionalPrice)
-        setValue('category', res.data.category)
+        setValue('category', res.data.category.name)
         setValue('avaliable', res.data.avaliable)
         setValue('activePromotion', res.data.activePromotion)
-        setCategoryX(getValues("category"))
+        //setCategoryX(getValues("category"))
         
       })
       .catch((err) => { console.log(err) })
@@ -45,11 +45,11 @@ export const useUpdateProduto = () => {
   }, [])
 
 
-  async function updateProduto(data: UpdateProduct) {
+  async function updateProduto(data: any) {
     console.log(data)
   }
 
-  return { updateProduto, register, handleSubmit, errors, categoryX }
+  return { updateProduto, register, handleSubmit, errors }
 }
 
 
