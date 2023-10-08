@@ -4,7 +4,7 @@ import { createProductFormSchema } from "./shcema";
 import { createProductForm } from "./types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod/dist/zod.js";
-import axios from "axios";
+import { deliveryInstance } from "@/services/deliveryInstance";
 
 export const useCreateProduto = () => {
   const [loading, setLoading] = useState(false);
@@ -20,8 +20,8 @@ export const useCreateProduto = () => {
   });
 
   async function createProduto(data: any, avaliable: boolean, activePromotion: boolean) {
-    setLoading(true)
-    axios.post('http://localhost:3000/product', { ...data, avaliable, activePromotion })
+    setLoading(true);
+    deliveryInstance.post('/product', { ...data, avaliable, activePromotion })
       .then((res) => {
         setStatus(res.status === 201 ? true : false)
       })
