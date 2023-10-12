@@ -44,17 +44,18 @@ export default function TableProdutos() {
           <TableRow key={item._id}>
             <TableCell>{item._id}</TableCell >
             <TableCell>{item.name}</TableCell >
-            <TableCell>{item.price} unid.</TableCell >
+            <TableCell>R$ {item.price}</TableCell >
             <TableCell>{item.description}</TableCell >
             <TableCell>
               <div className="h-[50px] w-[50px] bg-center bg-no-repeat bg-contain" style={{ backgroundImage: `url('${item.img}')` }} />
             </TableCell >
-            <TableCell>{item.promotionalPrice}</TableCell >
-            <TableCell>{item.category}</TableCell >
-            <TableCell>{item.avaliable ? "Sim" : "Não"}</TableCell >
+            <TableCell>R$ {item.promotionalPrice}</TableCell >
+            <TableCell>{item.category.name}</TableCell >
             <TableCell>{item.activePromotion ? "Sim" : "Não"}</TableCell >
+            <TableCell>{item.avaliable ? "Sim" : "Não"}</TableCell >
+            
             <td>
-              <Link to={`/produtos/${item.id}`}>Detalhes</Link>
+              <Link to={`/produtos/${item._id}`}>Detalhes</Link>
             </td>
           </TableRow>
         ))}

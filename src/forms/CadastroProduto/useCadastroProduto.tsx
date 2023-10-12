@@ -19,9 +19,9 @@ export const useCreateProduto = () => {
     criteriaMode: "all",
   });
 
-  async function createProduto(data: any, avaliable: boolean, activePromotion: boolean) {
+  async function createProduto(data: any, activePromotion: boolean, avaliable: boolean, ) {
     setLoading(true);
-    deliveryInstance.post('/product', { ...data, avaliable, activePromotion })
+    deliveryInstance.post('/product', { ...data,  activePromotion, avaliable })
       .then((res) => {
         setStatus(res.status === 201 ? true : false)
       })
