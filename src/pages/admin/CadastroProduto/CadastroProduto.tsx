@@ -24,7 +24,7 @@ const CadastroProdutos = () => {
   }, [])
 
   const submit = (data: any) => {
-    createProduto(data, card, prom)
+    createProduto(data, prom, card )
   }
 
   return (

@@ -6,12 +6,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod/dist/zod.js";
 import axios from "axios";
 import { UpdateProduct } from "./type";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { updateProductSchema } from "./schema";
 
 export const useUpdateProduto = () => {
   const params = useParams<{ id: string }>()
   //const [categoryX, setCategoryX] = useState('')
+  const navigate = useNavigate()
 
   const {
     setValue,
@@ -44,7 +45,9 @@ export const useUpdateProduto = () => {
 
   async function updateProduto(data: any) {
     axios.put(`http://localhost:3000/product/${params.id}`, data)
-      .then((res) => { console.log(res.data) })
+      .then((res) => { 
+        alert("Produto atualizado!")
+        console.log(res.data) })
       .catch((err) => { console.log(err) })
       .finally(() => { })
   }
@@ -53,7 +56,12 @@ export const useUpdateProduto = () => {
     const confirma = confirm('Deseja excluir esse produto?')
     if(confirma){
         axios.delete(`http://localhost:3000/product/${params.id}`, data)
-        .then((res) => { console.log(res.data) })
+        .then((res) => { 
+          alert("Produto excluido!")
+          console.log(res.data) 
+          navigate('/produtos')
+        
+        })
           .catch((err) => { console.log(err) })
           .finally(() => { })
     }
