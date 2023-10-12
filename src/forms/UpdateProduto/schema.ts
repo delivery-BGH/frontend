@@ -1,11 +1,16 @@
 import { z } from "zod";
 
-export const createProductFormSchema = z.object({
+export const updateProductSchema = z.object({
   name: z.string().nonempty("Nome obrigatório"),
   price: z.coerce.number(),
   description: z.string().nonempty("Obrigatório"),
   promotionalPrice: z.coerce.number(),
-  category: z.string().nonempty("Informe uma categoria"),
+  // category: z.object({
+  //   _id: z.string(),
+  //   name: z.string(),
+  //   description: z.string()
+  // }),
+  category: z.string(),
   img: z.string().refine(
     (value) => {
       // Adicione sua lógica de validação personalizada para a URL aqui
@@ -17,7 +22,7 @@ export const createProductFormSchema = z.object({
       message: "URL inválida",
     }
   ),
+  
   activePromotion: z.boolean(),
   avaliable: z.boolean()
 });
-

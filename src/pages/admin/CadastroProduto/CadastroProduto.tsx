@@ -14,7 +14,7 @@ const CadastroProdutos = () => {
   const [card, setCard] = useState(false);
   const [status, setStatus] = useState(statusForm);
   const navigate = useNavigate();
-  const [categorias, setCategorias] = useState<Array<unknown>>()
+  const [categories, setCategorias] = useState<Array<unknown>>()
 
   useEffect(() => {
     axios.get("http://localhost:3000/category")
@@ -38,7 +38,7 @@ const CadastroProdutos = () => {
         </div>
         <div>
           <label htmlFor="preco">Preço:</label>
-          <Input type="number" id="preco" {...register("price")} />
+          <Input type="number" id="preco" step={0.01} {...register("price")} />
           {errors.price && <span>{errors.price.message}</span>}
         </div>
         <div>
@@ -52,27 +52,26 @@ const CadastroProdutos = () => {
         </div>
         <div>
           <label htmlFor="precoProm">Preço Promocional:</label>
-          <Input type="number" id="precoProm" {...register("promotionalPrice")} />
+          <Input type="number" id="precoProm" step={0.01} {...register("promotionalPrice")} />
           {errors.promotionalPrice && <span>{errors.promotionalPrice.message}</span>}
         </div>
-        <div>
+        <div className="flex flex-row gap-2" >
           <label htmlFor="category">Categoria</label>
           <select
             className="bg-background"
             id="category"
             required
             {...register("category")}
-          // value={category.name}
           >
-            <option disabled value="">
+            <option selected value="123">
               Selecione uma categoria...
             </option>
 
-            {categorias && categorias.map((category: any, index: number) => (
+            {categories?.map((category, index: number) => (
               <option
                 className="bg-background"
                 key={index}
-                value={category.name}
+                value={category._id}
               >
                 {category.name}
               </option>
@@ -82,11 +81,14 @@ const CadastroProdutos = () => {
         <span>{errors.category?.message}</span>
         <div>
           <h4>Ativar promoção</h4>
-          <Checkbox onClick={() => { setProm(!prom) }} />
+          {/* <Checkbox {...register("activePromotion")} /> */}
+          <input type="checkbox" {...register("activePromotion")} />
+          <span>{errors.activePromotion?.message}</span>
         </div>
         <div className="">
           <h4>Liberar no Cardápio</h4>
-          <Checkbox onClick={() => { setCard(!card) }} />
+          <input type="checkbox" {...register("avaliable")} />
+          <span>{errors.avaliable?.message}</span>
         </div>
         <button
           type="submit"

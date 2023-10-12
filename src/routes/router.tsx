@@ -4,7 +4,6 @@ import RootLayoutAdmin from "@/pages/admin/RootLayoutAdmin";
 import { Home } from "lucide-react";
 import ProdutosLayout from "@/pages/admin/ProdutosLayout";
 import ListProduto from "@/pages/admin/ListProduto";
-import ShowProduto from "@/pages/admin/ShowProduto";
 import CadastroProdutos from "@/pages/admin/CadastroProduto/CadastroProduto";
 import { UpdateProduto } from "@/pages/admin/Update";
 import Login from "@/pages/login/Login";
@@ -25,8 +24,7 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <ListProduto /> },
           { path: "new", element: <CadastroProdutos /> },
-          { path: ":id", element: <ShowProduto /> },
-          { path: ":id/update", element: <UpdateProduto /> }
+          { path: ":id", element: <UpdateProduto /> }
         ]
       }
     ]
