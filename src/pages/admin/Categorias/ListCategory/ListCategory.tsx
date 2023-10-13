@@ -1,8 +1,7 @@
-export function ListCategory(){
-
-    return(
-        <>
-        <h2>Lista Categorias</h2>
-        </>
-    )
+export function ListCategory() {
+  return (
+    <>
+      <h2>Lista Categorias</h2>
+    </>
+  );
 }

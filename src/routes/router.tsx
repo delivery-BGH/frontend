@@ -3,9 +3,6 @@ import CadastroCliente from "@/pages/CadastroCliente";
 import RootLayoutAdmin from "@/pages/admin/RootLayoutAdmin";
 import { Home } from "lucide-react";
 
-
-
-
 import Login from "@/pages/login/Login";
 
 import ProdutosLayout from "@/pages/admin/Produtos/ProdutosLayout/ProdutosLayout";
@@ -18,8 +15,8 @@ import { CadastroCategorias } from "@/pages/admin/Categorias/CadastroCategoria/C
 
 export const router = createBrowserRouter([
   {
-    path: '/login',
-    element: <Login />
+    path: "/login",
+    element: <Login />,
   },
   {
     path: "/",
@@ -32,21 +29,21 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <ListProduto /> },
           { path: "new", element: <CadastroProdutos /> },
-          { path: ":id", element: <UpdateProduto /> }
-        ]
+          { path: ":id", element: <UpdateProduto /> },
+        ],
       },
       {
         path: "category",
-        element: <CategoriasLayout/>,
+        element: <CategoriasLayout />,
         children: [
-          {index:true, element: <ListCategory />},
-          {path: "new", element: <CadastroCategorias />}
-        ]
-      }
-    ]
+          { index: true, element: <ListCategory /> },
+          { path: "new", element: <CadastroCategorias /> },
+        ],
+      },
+    ],
   },
   {
     path: "/cadastroCliente",
-    element: <CadastroCliente />
-  }
-])
+    element: <CadastroCliente />,
+  },
+]);

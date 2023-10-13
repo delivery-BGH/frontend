@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import Input, { InputProps } from "./Input";
 
 const meta: Meta<InputProps> = {
-  title: 'Molecule/Input',
+  title: "Molecule/Input",
   component: Input,
   argTypes: {
     label: { type: "string" },
@@ -10,62 +10,61 @@ const meta: Meta<InputProps> = {
     placeholder: { type: "string" },
     disabled: { type: "boolean" },
     className: { type: "string" },
-  }
+  },
 };
 
 export default meta;
 
 export const Primary: StoryObj<InputProps> = {
   args: {
-    value: "Input"
-  }
-}
+    value: "Input",
+  },
+};
 export const PrimaryLabel: StoryObj<InputProps> = {
   args: {
     value: "Input",
-    label: "Label"
-  }
-}
+    label: "Label",
+  },
+};
 export const PrimaryDisabled: StoryObj<InputProps> = {
   args: {
     value: "Input",
-    disabled: true
-  }
-}
+    disabled: true,
+  },
+};
 export const PrimaryLabelDisabled: StoryObj<InputProps> = {
   args: {
     value: "Input",
     label: "Label",
-    disabled: true
-  }
-}
-
+    disabled: true,
+  },
+};
 
 export const Multiline: StoryObj<InputProps> = {
   args: {
     value: "TextArea",
-    multiline: true
-  }
-}
+    multiline: true,
+  },
+};
 export const MultilineLabel: StoryObj<InputProps> = {
   args: {
     value: "TextArea",
     multiline: true,
-    label: "Label"
-  }
-}
+    label: "Label",
+  },
+};
 export const MultilineDisabled: StoryObj<InputProps> = {
   args: {
     value: "TextArea",
     disabled: true,
-    multiline: true
-  }
-}
+    multiline: true,
+  },
+};
 export const MultilineLabelDisabled: StoryObj<InputProps> = {
   args: {
     value: "TextArea",
     label: "Label",
     disabled: true,
-    multiline: true
-  }
-}
+    multiline: true,
+  },
+};

@@ -1,13 +1,13 @@
 import Input from "../Input/Input";
 
-type InputProps = React.InputHTMLAttributes<HTMLInputElement>
+type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 const InputForm = ({ ...rest }: InputProps) => {
   return (
     <div>
-      <Input className="bg-background" {...rest}/>
+      <Input className="bg-background" {...rest} />
     </div>
-  )
-}
+  );
+};
 
-export default InputForm; 
+export default InputForm;

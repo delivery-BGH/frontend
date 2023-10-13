@@ -5,5 +5,5 @@ export default function ListProduto() {
     <div className="p-4">
       <TableProdutos />
     </div>
-  )
+  );
 }

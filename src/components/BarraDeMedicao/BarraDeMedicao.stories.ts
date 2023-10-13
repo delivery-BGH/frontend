@@ -1,16 +1,15 @@
-
 import { Meta, StoryObj } from "@storybook/react";
 
 import BarraDeMedicao, { BarraDeMedicaoProps } from "./BarraDeMedicao";
 
 const meta: Meta<BarraDeMedicaoProps> = {
-  title: 'Molecule/BarraDeMedicao',
+  title: "Molecule/BarraDeMedicao",
   component: BarraDeMedicao,
   argTypes: {
-    length: { 
+    length: {
       type: "number",
     },
-  }
+  },
 };
 
 export default meta;
@@ -18,7 +17,6 @@ export default meta;
 export const Default: StoryObj<BarraDeMedicaoProps> = {
   args: {
     children: "Botão",
-    length: 0
-  }
-}
-
+    length: 0,
+  },
+};

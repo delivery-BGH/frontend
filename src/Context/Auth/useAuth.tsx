@@ -1,24 +1,31 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { deliveryInstance } from '@/services/deliveryInstance';
-import { useState } from 'react';
+import { deliveryInstance } from "@/services/deliveryInstance";
+import { useState } from "react";
 
 const useAuth = () => {
-  const [response, setResponse] = useState<any>()
-  const [error, setError] = useState<any>()
-  const [loading, setLoading] = useState(false)
+  const [response, setResponse] = useState<any>();
+  const [error, setError] = useState<any>();
+  const [loading, setLoading] = useState(false);
 
-  const login = async (data: { email: string, password: string }) => {
-    setLoading(true)
-    deliveryInstance.post("http://localhost:3000/auth/login", { ...data })
-      .then((res) => { setResponse(res.data) })
-      .catch((err) => { setError(err) })
-      .finally(() => { setLoading(false) })
+  const login = async (data: { email: string; password: string }) => {
+    setLoading(true);
+    deliveryInstance
+      .post("http://localhost:3000/auth/login", { ...data })
+      .then((res) => {
+        setResponse(res.data);
+      })
+      .catch((err) => {
+        setError(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
 
-      return true;
-  }
+    return true;
+  };
 
-  return { loading, error, response, login }
-}
+  return { loading, error, response, login };
+};
 
-export default useAuth
+export default useAuth;

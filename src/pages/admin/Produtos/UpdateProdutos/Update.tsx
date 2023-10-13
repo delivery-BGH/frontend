@@ -1,7 +1,14 @@
-
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox"
-import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -10,21 +17,34 @@ import { useUpdateProduto } from "@/forms/UpdateProduto/useUpdateProduto";
 import axios from "axios";
 import { Toggle } from "@/components/ui/toggle";
 
-
 export function UpdateProduto() {
-  const { errors, handleSubmit, updateProduto, register, deleteProduto } = useUpdateProduto()
-  const [categories, setCategories] = useState<Array<{ _id: string, name: string }>>();
+  const { errors, handleSubmit, updateProduto, register, deleteProduto } =
+    useUpdateProduto();
+  const [categories, setCategories] =
+    useState<Array<{ _id: string; name: string }>>();
 
   useEffect(() => {
-    axios.get("http://localhost:3000/category")
-      .then((res) => { setCategories(res.data) })
-      .catch((err) => { console.log(err) })
-      .finally(() => { })
-  }, [])
+    axios
+      .get("http://localhost:3000/category")
+      .then((res) => {
+        setCategories(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {});
+  }, []);
 
   return (
     <div className=" w-4/5">
-      <div className={cn("h-[45px] w-[75px] border-[1px] border-red-600 scale-0", "scale-100")}>Loading</div>
+      <div
+        className={cn(
+          "h-[45px] w-[75px] border-[1px] border-red-600 scale-0",
+          "scale-100",
+        )}
+      >
+        Loading
+      </div>
       <form onSubmit={handleSubmit(updateProduto)}>
         <div>
           <label htmlFor="nome">Nome:</label>
@@ -47,10 +67,17 @@ export function UpdateProduto() {
         </div>
         <div>
           <label htmlFor="precoProm">Preço Promocional:</label>
-          <Input step={0.01} type="number" id="precoProm" {...register("promotionalPrice")} />
-          {errors.promotionalPrice && <span>{errors.promotionalPrice.message}</span>}
+          <Input
+            step={0.01}
+            type="number"
+            id="precoProm"
+            {...register("promotionalPrice")}
+          />
+          {errors.promotionalPrice && (
+            <span>{errors.promotionalPrice.message}</span>
+          )}
         </div>
-        <div className="flex flex-row gap-2" >
+        <div className="flex flex-row gap-2">
           <label htmlFor="category">Categoria</label>
           <select
             className="bg-background"

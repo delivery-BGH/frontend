@@ -1,35 +1,60 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox"
-import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios"
+import axios from "axios";
 import { useCreateProduto } from "@/forms/CadastroProduto/useCadastroProduto";
 import { cn } from "@/lib/utils";
 
 const CadastroProdutos = () => {
-  const { createProduto, register, handleSubmit, errors, loading, status: statusForm } = useCreateProduto();
+  const {
+    createProduto,
+    register,
+    handleSubmit,
+    errors,
+    loading,
+    status: statusForm,
+  } = useCreateProduto();
   const [prom, setProm] = useState(false);
   const [card, setCard] = useState(false);
   const [status, setStatus] = useState(statusForm);
   const navigate = useNavigate();
-  const [categories, setCategorias] = useState<Array<unknown>>()
+  const [categories, setCategorias] = useState<Array<unknown>>();
 
   useEffect(() => {
-    axios.get("http://localhost:3000/category")
-      .then((res) => { setCategorias(res.data) })
-      .catch(() => { })
-      .finally(() => { })
-  }, [])
+    axios
+      .get("http://localhost:3000/category")
+      .then((res) => {
+        setCategorias(res.data);
+      })
+      .catch(() => {})
+      .finally(() => {});
+  }, []);
 
   const submit = (data: any) => {
-    createProduto(data, prom, card )
-  }
+    createProduto(data, prom, card);
+  };
 
   return (
     <div className=" w-4/5">
-      <div className={cn("h-[45px] w-[75px] border-[1px] border-red-600 scale-0", loading && "scale-100")}>Loading</div>
+      <div
+        className={cn(
+          "h-[45px] w-[75px] border-[1px] border-red-600 scale-0",
+          loading && "scale-100",
+        )}
+      >
+        Loading
+      </div>
       <form onSubmit={handleSubmit(submit)}>
         <div>
           <label htmlFor="nome">Nome:</label>
@@ -52,10 +77,17 @@ const CadastroProdutos = () => {
         </div>
         <div>
           <label htmlFor="precoProm">Preço Promocional:</label>
-          <Input type="number" id="precoProm" step={0.01} {...register("promotionalPrice")} />
-          {errors.promotionalPrice && <span>{errors.promotionalPrice.message}</span>}
+          <Input
+            type="number"
+            id="precoProm"
+            step={0.01}
+            {...register("promotionalPrice")}
+          />
+          {errors.promotionalPrice && (
+            <span>{errors.promotionalPrice.message}</span>
+          )}
         </div>
-        <div className="flex flex-row gap-2" >
+        <div className="flex flex-row gap-2">
           <label htmlFor="category">Categoria</label>
           <select
             className="bg-background"
@@ -99,7 +131,7 @@ const CadastroProdutos = () => {
       </form>
 
       <AlertDialog open={statusForm}>
-        <AlertDialogContent >
+        <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Gabriel é muito lindo!</AlertDialogTitle>
             <AlertDialogDescription>
@@ -107,16 +139,19 @@ const CadastroProdutos = () => {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogAction onClick={() => {
-              navigate('/');
-              setStatus(false);
-            }}>Continue</AlertDialogAction>
+            <AlertDialogAction
+              onClick={() => {
+                navigate("/");
+                setStatus(false);
+              }}
+            >
+              Continue
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
     </div>
   );
 };
-
 
 export default CadastroProdutos;

@@ -15,9 +15,8 @@ export const createProductFormSchema = z.object({
     },
     {
       message: "URL inválida",
-    }
+    },
   ),
   activePromotion: z.boolean(),
-  avaliable: z.boolean()
+  avaliable: z.boolean(),
 });
-

@@ -1,6 +1,5 @@
-
-import { useState } from 'react';
-import { v4 as uuid } from 'uuid';
+import { useState } from "react";
+import { v4 as uuid } from "uuid";
 
 export type CheckBoxProps = {
   defaultEnable?: boolean;
@@ -8,7 +7,12 @@ export type CheckBoxProps = {
   onChange?: (enabled: boolean) => void;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-const Checkbox = ({ defaultEnable: enabledByDefault, disabled, onChange, ...rest }: CheckBoxProps) => {
+const Checkbox = ({
+  defaultEnable: enabledByDefault,
+  disabled,
+  onChange,
+  ...rest
+}: CheckBoxProps) => {
   const id = uuid();
   const [check, setCheck] = useState(enabledByDefault);
 
@@ -16,7 +20,7 @@ const Checkbox = ({ defaultEnable: enabledByDefault, disabled, onChange, ...rest
     const newState = !check;
     setCheck(newState);
     onChange?.(newState);
-  }
+  };
 
   return (
     <input
@@ -30,10 +34,10 @@ const Checkbox = ({ defaultEnable: enabledByDefault, disabled, onChange, ...rest
          "
       type="checkbox"
       id={id}
-    // checked={check}
-    // onChange={() => setCheck(!check)}
+      // checked={check}
+      // onChange={() => setCheck(!check)}
     />
-  )
-}
+  );
+};
 
 export default Checkbox;
