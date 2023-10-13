@@ -7,11 +7,14 @@ import { Home } from "lucide-react";
 
 
 import Login from "@/pages/login/Login";
-import { CreateCategory } from "@/pages/admin/Categorias/CadastroCategoria/CadastroCategoria";
+
 import ProdutosLayout from "@/pages/admin/Produtos/ProdutosLayout/ProdutosLayout";
 import ListProduto from "@/pages/admin/Produtos/ListProduct/ListProduto";
 import CadastroProdutos from "@/pages/admin/Produtos/CadastroProduto/CadastroProduto";
 import { UpdateProduto } from "@/pages/admin/Produtos/UpdateProdutos/Update";
+import CategoriasLayout from "@/pages/admin/Categorias/CategoriasLayout/CategoriasLayout";
+import { ListCategory } from "@/pages/admin/Categorias/ListCategory/ListCategory";
+import { CadastroCategorias } from "@/pages/admin/Categorias/CadastroCategoria/CadastroCategoria";
 
 export const router = createBrowserRouter([
   {
@@ -34,7 +37,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "category",
-        element: <CreateCategory/>
+        element: <CategoriasLayout/>,
+        children: [
+          {index:true, element: <ListCategory />},
+          {path: "new", element: <CadastroCategorias />}
+        ]
       }
     ]
   },
