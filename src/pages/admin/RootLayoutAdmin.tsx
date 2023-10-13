@@ -10,6 +10,7 @@ export default function RootLayoutAdmin() {
           <nav className="flex flex-row gap-2">
             <Link to="/">Início</Link>
             <Link to="/produtos">Produtos</Link>
+            <Link to="/category">Categorias</Link>
           </nav>
           <Menu />
         </div>
