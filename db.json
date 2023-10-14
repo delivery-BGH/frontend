@@ -1,0 +1,416 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Monkey D. Luffy",
+      "email": "MonkeyDLuffy@email.com",
+      "senha": "hashDaSenha",
+      "telefone": "00000000",
+      "cpf": "12345678901",
+      "cep": "12345678",
+      "cidade": "Crocacica",
+      "bairro": "Linda Pedra",
+      "rua": "temD10eTemD15",
+      "numero": "D15"
+    }
+  ],
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Espetinha",
+      "descricao": "Espetinho vegano",
+      "preco": 10.23,
+      "urlImg": "https://veganizadores.com.br/wp-content/uploads/2021/03/Espetinhos-Veganos-Churrasco-Vegano-Vegan-Receita-Vegana-Veganizadores-Espetinho.jpg",
+      "disponivel": true,
+      "categoria": 1,
+      "complementos": [
+        1,
+        2
+      ],
+      "precoPromocional": 9.69,
+      "promocaoAtiva": false
+    },
+    {
+      "id": 2,
+      "nome": "Feijoada",
+      "descricao": "Feijoada completa para 3 pessoas",
+      "preco": 69.69,
+      "urlImg": "https://assets.unileversolutions.com/recipes-v2/229468.jpg",
+      "disponivel": true,
+      "categoria": 2,
+      "complementos": [
+        3
+      ],
+      "precoPromocional": 55.45,
+      "promocaoAtiva": true
+    },
+    {
+      "id": 3,
+      "nome": "Caipirinha de limão",
+      "descricao": "Caipirinha de cachaca prata",
+      "preco": 21.22,
+      "urlImg": "https://cdn0.tudoreceitas.com/pt/posts/4/2/9/caipirinha_tradicional_brasileira_2924_600.jpg",
+      "disponivel": true,
+      "categoria": 3,
+      "complementos": [],
+      "precoPromocional": 17.18,
+      "promocaoAtiva": false
+    },
+    {
+      "nome": "Gabriel Marmita",
+      "preco": "30",
+      "descricao": "asduhasduh",
+      "precoPromocional": "25",
+      "categoria": "",
+      "urlImg": "https://educacao.vitoria.es.gov.br/sge/Default.aspx",
+      "id": 4
+    },
+    {
+      "nome": "teste",
+      "preco": "150",
+      "descricao": "marmita cara",
+      "precoPromocional": "50",
+      "categoria": "pratos",
+      "urlImg": "https://educacao.vitoria.es.gov.br/sge/Default.aspx",
+      "id": 5
+    },
+    {
+      "nome": "asd",
+      "preco": "21",
+      "descricao": "asdasd",
+      "precoPromocional": "15",
+      "categoria": "",
+      "urlImg": "https://educacao.vitoria.es.gov.br/sge/Default.aspx",
+      "promocaoAtiva": "on",
+      "disponivel": "on",
+      "id": 6
+    },
+    {
+      "nome": "hugo",
+      "preco": "25",
+      "descricao": "asdasd",
+      "precoPromocional": "10",
+      "categoria": "",
+      "urlImg": "https://w7.pngwing.com/pngs/129/292/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon.png",
+      "promocaoAtiva": "on",
+      "disponivel": "on",
+      "id": 7
+    },
+    {
+      "nome": "asdasd",
+      "preco": "2221",
+      "descricao": "2asdasd",
+      "precoPromocional": "123",
+      "categoria": "",
+      "urlImg": "https://educacao.vitoria.es.gov.br/sge/Default.aspx",
+      "promocaoAtiva": "on",
+      "disponivel": "on",
+      "id": 8
+    },
+    {
+      "nome": "testeNovamen",
+      "preco": "50",
+      "descricao": "rtestetstest",
+      "precoPromocional": "35",
+      "categoria": "veganos",
+      "urlImg": "https://educacao.vitoria.es.gov.br/sge/Default.aspx",
+      "promocaoAtiva": "on",
+      "disponivel": "on",
+      "id": 9
+    },
+    {
+      "nome": "brenda",
+      "preco": "50",
+      "descricao": "aushdasuhd",
+      "precoPromocional": "35",
+      "categoria": "Lanche",
+      "urlImg": "https://devina.io/",
+      "promocaoAtiva": "on",
+      "disponivel": "on",
+      "id": 10
+    },
+    {
+      "nome": "234234",
+      "preco": "234234",
+      "descricao": "234234",
+      "precoPromocional": "12312",
+      "categoria": "Sobremesa",
+      "urlImg": "https://e1.pxfuel.com/desktop-wallpaper/572/661/desktop-wallpaper-baldur-s-gate-3-and-orcs-must-die-3-are-due-in-2020-according-to-google-stadia-press-release-baldurs-gate-iii.jpg",
+      "disponivel": true,
+      "promocao": true,
+      "id": 15
+    },
+    {
+      "nome": "234234",
+      "preco": "234234",
+      "descricao": "234234",
+      "precoPromocional": "12312",
+      "categoria": "Sobremesa",
+      "urlImg": "https://e1.pxfuel.com/desktop-wallpaper/572/661/desktop-wallpaper-baldur-s-gate-3-and-orcs-must-die-3-are-due-in-2020-according-to-google-stadia-press-release-baldurs-gate-iii.jpg",
+      "disponivel": true,
+      "promocao": true,
+      "id": 16
+    },
+    {
+      "nome": "sdrfgsd",
+      "preco": "3453245",
+      "descricao": "fghdfg",
+      "precoPromocional": "2345345",
+      "categoria": "Marmitas",
+      "urlImg": "https://e1.pxfuel.com/desktop-wallpaper/572/661/desktop-wallpaper-baldur-s-gate-3-and-orcs-must-die-3-are-due-in-2020-according-to-google-stadia-press-release-baldurs-gate-iii.jpg",
+      "disponivel": true,
+      "promocao": true,
+      "id": 17
+    },
+    {
+      "nome": "dfgsdfg",
+      "preco": "345345",
+      "descricao": "345345",
+      "precoPromocional": "3453453",
+      "categoria": "Sobremesa",
+      "urlImg": "https://e1.pxfuel.com/desktop-wallpaper/572/661/desktop-wallpaper-baldur-s-gate-3-and-orcs-must-die-3-are-due-in-2020-according-to-google-stadia-press-release-baldurs-gate-iii.jpg",
+      "disponivel": true,
+      "promocao": true,
+      "id": 18
+    },
+    {
+      "nome": "sdtgsdrgsdf",
+      "preco": "34653456",
+      "descricao": "sdfgsdfg",
+      "precoPromocional": "2345345",
+      "categoria": "Sobremesa",
+      "urlImg": "https://e1.pxfuel.com/desktop-wallpaper/572/661/desktop-wallpaper-baldur-s-gate-3-and-orcs-must-die-3-are-due-in-2020-according-to-google-stadia-press-release-baldurs-gate-iii.jpg",
+      "disponivel": true,
+      "promocao": true,
+      "id": 19
+    },
+    {
+      "nome": "23452345",
+      "preco": "345345",
+      "descricao": "34534",
+      "precoPromocional": "345345",
+      "categoria": "Lanche",
+      "urlImg": "https://e1.pxfuel.com/desktop-wallpaper/572/661/desktop-wallpaper-baldur-s-gate-3-and-orcs-must-die-3-are-due-in-2020-according-to-google-stadia-press-release-baldurs-gate-iii.jpg",
+      "disponivel": true,
+      "promocao": true,
+      "id": 20
+    },
+    {
+      "nome": "123",
+      "preco": "123",
+      "descricao": "123",
+      "precoPromocional": "123",
+      "categoria": "Sobremesa",
+      "urlImg": "https://e1.pxfuel.com/desktop-wallpaper/572/661/desktop-wallpaper-baldur-s-gate-3-and-orcs-must-die-3-are-due-in-2020-according-to-google-stadia-press-release-baldurs-gate-iii.jpg",
+      "card": true,
+      "prom": true,
+      "id": 21
+    },
+    {
+      "nome": "1234",
+      "preco": "123",
+      "descricao": "123",
+      "precoPromocional": "123",
+      "categoria": "Sobremesa",
+      "urlImg": "https://e1.pxfuel.com/desktop-wallpaper/572/661/desktop-wallpaper-baldur-s-gate-3-and-orcs-must-die-3-are-due-in-2020-according-to-google-stadia-press-release-baldurs-gate-iii.jpg",
+      "card": true,
+      "prom": true,
+      "id": 22
+    },
+    {
+      "nome": "qwert",
+      "preco": "1234",
+      "descricao": "123",
+      "precoPromocional": "123",
+      "categoria": "Sobremesa",
+      "urlImg": "https://e1.pxfuel.com/desktop-wallpaper/572/661/desktop-wallpaper-baldur-s-gate-3-and-orcs-must-die-3-are-due-in-2020-according-to-google-stadia-press-release-baldurs-gate-iii.jpg",
+      "card": true,
+      "prom": true,
+      "id": 23
+    },
+    {
+      "nome": "qwert",
+      "preco": "1234",
+      "descricao": "123",
+      "precoPromocional": "123",
+      "categoria": "Sobremesa",
+      "urlImg": "https://e1.pxfuel.com/desktop-wallpaper/572/661/desktop-wallpaper-baldur-s-gate-3-and-orcs-must-die-3-are-due-in-2020-according-to-google-stadia-press-release-baldurs-gate-iii.jpg",
+      "card": true,
+      "prom": true,
+      "id": 24
+    },
+    {
+      "nome": "Cliente do User 2",
+      "preco": "123",
+      "descricao": "ERWER",
+      "precoPromocional": "12312",
+      "categoria": "Sobremesa",
+      "urlImg": "https://e1.pxfuel.com/desktop-wallpaper/572/661/desktop-wallpaper-baldur-s-gate-3-and-orcs-must-die-3-are-due-in-2020-according-to-google-stadia-press-release-baldurs-gate-iii.jpg",
+      "card": true,
+      "prom": true,
+      "id": 25
+    },
+    {
+      "nome": "2134234",
+      "preco": "23423",
+      "descricao": "123",
+      "precoPromocional": "23423",
+      "categoria": "Frios",
+      "urlImg": "https://e1.pxfuel.com/desktop-wallpaper/572/661/desktop-wallpaper-baldur-s-gate-3-and-orcs-must-die-3-are-due-in-2020-according-to-google-stadia-press-release-baldurs-gate-iii.jpg",
+      "card": true,
+      "prom": true,
+      "id": 26
+    },
+    {
+      "nome": "sdfs",
+      "preco": "23423",
+      "descricao": "23423",
+      "precoPromocional": "23423",
+      "categoria": "pratos",
+      "urlImg": "https://e1.pxfuel.com/desktop-wallpaper/572/661/desktop-wallpaper-baldur-s-gate-3-and-orcs-must-die-3-are-due-in-2020-according-to-google-stadia-press-release-baldurs-gate-iii.jpg",
+      "card": true,
+      "prom": true,
+      "id": 27
+    },
+    {
+      "nome": "23423",
+      "preco": "23423",
+      "descricao": "23423",
+      "precoPromocional": "23423",
+      "categoria": "Sobremesa",
+      "urlImg": "https://e1.pxfuel.com/desktop-wallpaper/572/661/desktop-wallpaper-baldur-s-gate-3-and-orcs-must-die-3-are-due-in-2020-according-to-google-stadia-press-release-baldurs-gate-iii.jpg",
+      "card": true,
+      "prom": true,
+      "id": 28
+    },
+    {
+      "nome": "Espeto",
+      "preco": "15",
+      "descricao": "espetinhohummm",
+      "precoPromocional": "12",
+      "categoria": "pratos",
+      "urlImg": "https://e1.pxfuel.com/desktop-wallpaper/572/661/desktop-wallpaper-baldur-s-gate-3-and-orcs-must-die-3-are-due-in-2020-according-to-google-stadia-press-release-baldurs-gate-iii.jpg",
+      "id": 29
+    }
+  ],
+  "complementos": [
+    {
+      "id": 1,
+      "categoria": 1,
+      "nome": "farofa de mandioca",
+      "descricao": ""
+    },
+    {
+      "id": 2,
+      "categoria": 1,
+      "nome": "Maionese caseira vegana",
+      "descricao": "Não contem ovo nem leite"
+    },
+    {
+      "id": 3,
+      "categoria": 2,
+      "nome": "Faroda de bacon",
+      "descricao": ""
+    }
+  ],
+  "categorias": [
+    {
+      "id": 1,
+      "nome": "veganos"
+    },
+    {
+      "id": 2,
+      "nome": "pratos"
+    },
+    {
+      "id": 3,
+      "nome": "bebidas"
+    },
+    {
+      "id": 4,
+      "nome": "Lanche"
+    },
+    {
+      "id": 5,
+      "nome": "Sobremesa"
+    },
+    {
+      "id": 6,
+      "nome": "Bebidas"
+    },
+    {
+      "id": 7,
+      "nome": "Marmitas"
+    },
+    {
+      "id": 8,
+      "nome": "Frios"
+    }
+  ],
+  "statusDoPedido": [
+    {
+      "id": 1,
+      "nome": "Em Preparo"
+    },
+    {
+      "id": 2,
+      "nome": "Saiu para entrega"
+    },
+    {
+      "id": 3,
+      "nome": "Entregue"
+    },
+    {
+      "id": 4,
+      "nome": "Cancelado"
+    }
+  ],
+  "bairroParaEntrega": [
+    {
+      "id": 1,
+      "nome": "Linda Pedra"
+    },
+    {
+      "id": 2,
+      "nome": "Caratoira"
+    }
+  ],
+  "pedidos": [
+    {
+      "id": 1,
+      "usuario": 1,
+      "produtos": [
+        {
+          "produto": 1,
+          "quantidade": 1,
+          "complementos": [
+            1,
+            2
+          ]
+        },
+        {
+          "produto": 2,
+          "quantidade": 1,
+          "complementos": [
+            3
+          ]
+        },
+        {
+          "produto": 3,
+          "quantidade": 1,
+          "complementos": []
+        }
+      ],
+      "enderecoDeEntrega": {
+        "cep": "12345678",
+        "cidade": "Crocacica",
+        "bairro": "Linda Pedra",
+        "rua": "temD10eTemD15",
+        "numero": "D15"
+      },
+      "total": 86.9,
+      "data": "2023-09-17T22:36:32.149Z",
+      "status": 3
+    }
+  ]
+}
