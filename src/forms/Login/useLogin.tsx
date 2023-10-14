@@ -17,8 +17,8 @@ const useLogin = () => {
   return {
     register,
     handleSubmit,
-    errors,
-  };
-};
+    errors
+  }
+}
 
-export default useLogin;
+export default useLogin

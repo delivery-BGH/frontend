@@ -1,33 +1,28 @@
-import { Theme, useTheme } from "@/Context/Theme/ThemeContext";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
-import { Cpu, Moon, Sun } from "lucide-react";
-import { Button } from "../ui/button";
+import { Theme, useTheme } from "@/Context/Theme/ThemeContext"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu"
+import { Cpu, Moon, Sun } from "lucide-react"
+import { Button } from "../ui/button"
 
-const options: Array<{ icon: JSX.Element; text: string; theme: Theme }> = [
+const options: Array<{ icon: JSX.Element, text: string, theme: Theme }> = [
   {
     icon: <Sun className="h-[1.2rem] w-[1.2rem]" />,
     text: "Light",
-    theme: "light",
+    theme: "light"
   },
   {
     icon: <Moon className="h-[1.2rem] w-[1.2rem]" />,
     text: "Dark",
-    theme: "dark",
+    theme: "dark"
   },
   {
     icon: <Cpu className="h-[1.2rem] w-[1.2rem]" />,
     text: "System",
-    theme: "system",
-  },
-];
+    theme: "system"
+  }
+]
 
 const ToggleTheme = () => {
-  const { setTheme } = useTheme();
+  const { setTheme } = useTheme()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -38,10 +33,7 @@ const ToggleTheme = () => {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent
-        align="end"
-        className="border-[1px] grid gap-1 rounded-lg p-1 w-[120px] bg-background"
-      >
+      <DropdownMenuContent align="end" className="border-[1px] grid gap-1 rounded-lg p-1 w-[120px] bg-background">
         {options.map((item, index) => {
           return (
             <DropdownMenuItem
@@ -54,11 +46,11 @@ const ToggleTheme = () => {
                 <p>{item.text}</p>
               </div>
             </DropdownMenuItem>
-          );
+          )
         })}
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-};
+  )
+}
 
-export default ToggleTheme;
+export default ToggleTheme

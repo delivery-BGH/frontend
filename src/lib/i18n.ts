@@ -6,11 +6,11 @@ import enTranslations from "../locale/en.json";
 i18n.use(initReactI18next).init({
   resources: {
     en: {
-      ...enTranslations,
+      ...enTranslations
     },
     pt: {
-      ...ptTranslations,
+      ...ptTranslations
     },
   },
-  lng: "pt",
-});
+  lng: 'pt',
+})

@@ -6,9 +6,7 @@ export default function RootLayoutAdmin() {
     <div className="p-6 w-full">
       <header className="flex flex-row w-full justify-between">
         <div className="w-full flex flex-row justify-between">
-          <Link to="/" className="logo">
-            Delivery BGH
-          </Link>
+          <Link to="/" className="logo">Delivery BGH</Link>
           <nav className="flex flex-row gap-2">
             <Link to="/">Início</Link>
             <Link to="/produtos">Produtos</Link>
@@ -24,5 +22,5 @@ export default function RootLayoutAdmin() {
         Todos os direitos reservados por BGH
       </footer>
     </div>
-  );
+  )
 }

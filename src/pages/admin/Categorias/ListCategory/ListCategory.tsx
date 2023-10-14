@@ -1,7 +1,10 @@
-export function ListCategory() {
-  return (
-    <>
-      <h2>Lista Categorias</h2>
-    </>
-  );
+import TableCategory from "@/components/Table/TableCategory";
+
+export function ListCategory(){
+
+    return(
+        <>
+         <TableCategory />
+        </>
+    )
 }
