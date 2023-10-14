@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod/dist/zod.js";
 import { updateCategoryFormSchema } from "./schema";
 import { useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export function useUpdateCategory(){
     const {
@@ -18,6 +18,8 @@ export function useUpdateCategory(){
         mode: "all",
         criteriaMode: "all",
     })
+
+    const navigate = useNavigate()
 
     const params = useParams<{id: string}>()
 
@@ -39,5 +41,17 @@ export function useUpdateCategory(){
         .catch((err) => {console.log(err)})
     }
 
-    return { register, handleSubmit, errors, updateCategory}
+    const deleteCategory= (data: any) =>{
+        const confirma = confirm('Deseja excluir essa categoria?')
+        if(confirma){
+            axios.delete(`http://localhost:3000/category/${params.id}`, data)
+            .then((res) => {
+                alert("Categoria excluida!")
+                console.log(res.data)
+                navigate('/category')
+            })
+        }
+    }
+
+    return { register, handleSubmit, errors, updateCategory, deleteCategory}
 }

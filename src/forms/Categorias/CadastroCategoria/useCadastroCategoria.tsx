@@ -22,7 +22,7 @@ export function useCreateCategory(){
         axios.post(`http://localhost:3000/category`, {...data})
         .then((res) => {
             console.log(res.status)
-            alert("Produto Cadastrado!")
+            alert("Categoria Cadastrada!")
         })
         .catch((error) => {
             console.log(error)

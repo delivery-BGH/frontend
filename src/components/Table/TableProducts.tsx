@@ -50,7 +50,7 @@ export default function TableProdutos() {
               <div className="h-[50px] w-[50px] bg-center bg-no-repeat bg-contain" style={{ backgroundImage: `url('${item.img}')` }} />
             </TableCell >
             <TableCell>R$ {item.promotionalPrice}</TableCell >
-            <TableCell>{item.category.name}</TableCell >
+            <TableCell>{item.category == null ? "Vazio": item.category.name}</TableCell>
             <TableCell>{item.activePromotion ? "Sim" : "Não"}</TableCell >
             <TableCell>{item.avaliable ? "Sim" : "Não"}</TableCell >
             

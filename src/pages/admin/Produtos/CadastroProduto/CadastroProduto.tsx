@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox"
@@ -67,7 +68,7 @@ const CadastroProdutos = () => {
               Selecione uma categoria...
             </option>
 
-            {categories?.map((category, index: number) => (
+            {categories?.map((category: any, index: number) => (
               <option
                 className="bg-background"
                 key={index}

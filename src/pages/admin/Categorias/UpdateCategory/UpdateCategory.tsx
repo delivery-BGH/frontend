@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { useUpdateCategory } from "@/forms/Categorias/UpdateCategory/useUpdateCategory";
 
 export function UpdateCategory(){
- const { register, handleSubmit, errors, updateCategory} = useUpdateCategory()
+ const { register, handleSubmit, errors, updateCategory, deleteCategory} = useUpdateCategory()
 
 const submit = (data: any) => {
     updateCategory(data)
@@ -27,6 +27,13 @@ const submit = (data: any) => {
           >
             Salvar
           </button>
+          <button
+          type="button"
+          className="bg-red-600 rounded-lg text-2xl p-2 mt-3 hover:bg-slate-700"
+          onClick={deleteCategory}
+        >
+          Excluir
+        </button>
           </form>
         </div>
         </>
