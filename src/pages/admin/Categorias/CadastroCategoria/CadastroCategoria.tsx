@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
-import { useCreateCategory } from "@/forms/CadastroCategoria/useCadastroCategoria";
+import { useCreateCategory } from "@/forms/Categorias/CadastroCategoria/useCadastroCategoria";
+
 
 export function CadastroCategorias() {
   const {register, errors, handleSubmit, CreateCategory} = useCreateCategory()
@@ -13,12 +14,12 @@ export function CadastroCategorias() {
         <form onSubmit={handleSubmit(submit)}>
           <div>
             <label htmlFor="name">Nome:</label>
-            <Input type="text" {...register("name")}/>
+            <Input type="text" id="name" {...register("name")}/>
             {errors.name && <span>{errors.name?.message}</span>}
           </div>
           <div>
             <label htmlFor="description">Descrição:</label>
-            <Input type="text" {...register("description")}/>
+            <Input type="text" id="description"{...register("description")}/>
             {errors.description && <span>{errors.description?.message}</span>}
           </div>
           <button

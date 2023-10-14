@@ -15,6 +15,7 @@ import { UpdateProduto } from "@/pages/admin/Produtos/UpdateProdutos/Update";
 import CategoriasLayout from "@/pages/admin/Categorias/CategoriasLayout/CategoriasLayout";
 import { ListCategory } from "@/pages/admin/Categorias/ListCategory/ListCategory";
 import { CadastroCategorias } from "@/pages/admin/Categorias/CadastroCategoria/CadastroCategoria";
+import { UpdateCategory } from "@/pages/admin/Categorias/UpdateCategory/UpdateCategory";
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +41,8 @@ export const router = createBrowserRouter([
         element: <CategoriasLayout/>,
         children: [
           {index:true, element: <ListCategory />},
-          {path: "new", element: <CadastroCategorias />}
+          {path: "new", element: <CadastroCategorias />},
+          {path: ":id", element: <UpdateCategory/>}
         ]
       }
     ]
