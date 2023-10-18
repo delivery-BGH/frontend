@@ -16,6 +16,8 @@ import CategoriasLayout from "@/pages/admin/Categorias/CategoriasLayout/Categori
 import { ListCategory } from "@/pages/admin/Categorias/ListCategory/ListCategory";
 import { CadastroCategorias } from "@/pages/admin/Categorias/CadastroCategoria/CadastroCategoria";
 import { UpdateCategory } from "@/pages/admin/Categorias/UpdateCategory/UpdateCategory";
+import UsersLayout from "@/pages/admin/Users/UsersLayout/UsersLayout";
+import ListUser from "@/pages/admin/Users/ListUser/ListUser";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +45,13 @@ export const router = createBrowserRouter([
           {index:true, element: <ListCategory />},
           {path: "new", element: <CadastroCategorias />},
           {path: ":id", element: <UpdateCategory/>}
+        ]
+      },
+      {
+        path: "user",
+        element: <UsersLayout />,
+        children: [
+          {index: true, element: <ListUser />}
         ]
       }
     ]
