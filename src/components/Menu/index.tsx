@@ -7,5 +7,5 @@ export default function Menu() {
       <ToggleTheme />
       <ToggleLanguage />
     </div>
-  )
+  );
 }

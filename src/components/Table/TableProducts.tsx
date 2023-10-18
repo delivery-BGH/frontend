@@ -1,7 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../ui/table";
 
 export default function TableProdutos() {
   const [produtos, setProdutos] = useState([]);
@@ -27,33 +34,37 @@ export default function TableProdutos() {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>ID</TableHead >
-          <TableHead>Nome</TableHead >
-          <TableHead>Preço</TableHead >
-          <TableHead>Descrição</TableHead >
-          <TableHead>Url</TableHead >
-          <TableHead>Preço Promocional</TableHead >
-          <TableHead>Categoria</TableHead >
-          <TableHead>Promoção ativada</TableHead >
-          <TableHead>Disponível no cardápio</TableHead >
+          <TableHead>ID</TableHead>
+          <TableHead>Nome</TableHead>
+          <TableHead>Preço</TableHead>
+          <TableHead>Descrição</TableHead>
+          <TableHead>Url</TableHead>
+          <TableHead>Preço Promocional</TableHead>
+          <TableHead>Categoria</TableHead>
+          <TableHead>Promoção ativada</TableHead>
+          <TableHead>Disponível no cardápio</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {produtos.map((item: any) => (
-
           <TableRow key={item._id}>
-            <TableCell>{item._id}</TableCell >
-            <TableCell>{item.name}</TableCell >
-            <TableCell>R$ {item.price}</TableCell >
-            <TableCell>{item.description}</TableCell >
+            <TableCell>{item._id}</TableCell>
+            <TableCell>{item.name}</TableCell>
+            <TableCell>R$ {item.price}</TableCell>
+            <TableCell>{item.description}</TableCell>
             <TableCell>
-              <div className="h-[50px] w-[50px] bg-center bg-no-repeat bg-contain" style={{ backgroundImage: `url('${item.img}')` }} />
-            </TableCell >
-            <TableCell>R$ {item.promotionalPrice}</TableCell >
-            <TableCell>{item.category == null ? "Vazio": item.category.name}</TableCell>
-            <TableCell>{item.activePromotion ? "Sim" : "Não"}</TableCell >
-            <TableCell>{item.avaliable ? "Sim" : "Não"}</TableCell >
-            
+              <div
+                className="h-[50px] w-[50px] bg-center bg-no-repeat bg-contain"
+                style={{ backgroundImage: `url('${item.img}')` }}
+              />
+            </TableCell>
+            <TableCell>R$ {item.promotionalPrice}</TableCell>
+            <TableCell>
+              {item.category == null ? "Vazio" : item.category.name}
+            </TableCell>
+            <TableCell>{item.activePromotion ? "Sim" : "Não"}</TableCell>
+            <TableCell>{item.avaliable ? "Sim" : "Não"}</TableCell>
+
             <td>
               <Link to={`/produtos/${item._id}`}>Detalhes</Link>
             </td>

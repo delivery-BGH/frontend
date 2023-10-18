@@ -1,9 +1,8 @@
-
 import { Meta, StoryObj } from "@storybook/react";
 import Checkbox, { CheckBoxProps } from "./Checkbox";
 
 const meta: Meta<CheckBoxProps> = {
-  title: 'Molecule/Checkbox',
+  title: "Molecule/Checkbox",
   component: Checkbox,
   argTypes: {
     disabled: {
@@ -11,37 +10,33 @@ const meta: Meta<CheckBoxProps> = {
     },
     checked: {
       type: "boolean",
-    }
-  }
+    },
+  },
 };
 
 export default meta;
 
 export const Padrao: StoryObj<CheckBoxProps> = {
-  args: {
-
-  }
-}
+  args: {},
+};
 
 export const Checked: StoryObj<CheckBoxProps> = {
   args: {
     checked: true,
-    disabled: false
-  }
-}
+    disabled: false,
+  },
+};
 
 export const UnCheckedDisabled: StoryObj<CheckBoxProps> = {
   args: {
     checked: false,
-    disabled: true
-  }
-}
+    disabled: true,
+  },
+};
 
 export const CheckedDisabled: StoryObj<CheckBoxProps> = {
   args: {
     checked: true,
-    disabled: true
-  }
-}
-
-
+    disabled: true,
+  },
+};

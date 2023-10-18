@@ -18,6 +18,5 @@ export const createProductFormSchema = z.object({
     }
   ),
   activePromotion: z.boolean(),
-  avaliable: z.boolean()
+  avaliable: z.boolean(),
 });
-

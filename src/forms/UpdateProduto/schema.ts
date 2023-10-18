@@ -22,7 +22,7 @@ export const updateProductSchema = z.object({
       message: "URL inválida",
     }
   ),
-  
+
   activePromotion: z.boolean(),
-  avaliable: z.boolean()
+  avaliable: z.boolean(),
 });

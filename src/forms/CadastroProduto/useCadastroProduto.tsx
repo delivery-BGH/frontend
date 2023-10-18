@@ -19,22 +19,24 @@ export const useCreateProduto = () => {
     criteriaMode: "all",
   });
 
-  async function createProduto(data: any, activePromotion: boolean, avaliable: boolean, ) {
+  async function createProduto(
+    data: any,
+    activePromotion: boolean,
+    avaliable: boolean
+  ) {
     setLoading(true);
-    deliveryInstance.post('/product', { ...data,  activePromotion, avaliable })
+    deliveryInstance
+      .post("/product", { ...data, activePromotion, avaliable })
       .then((res) => {
-        setStatus(res.status === 201 ? true : false)
+        setStatus(res.status === 201 ? true : false);
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
       })
       .finally(() => {
-        setLoading(false)
-      })
+        setLoading(false);
+      });
   }
 
-  return { createProduto, register, handleSubmit, errors, status, loading }
-}
-
-
-
+  return { createProduto, register, handleSubmit, errors, status, loading };
+};

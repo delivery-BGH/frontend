@@ -1,4 +1,3 @@
-
 import TableUser from "@/components/Table/TableUser";
 
 export default function ListUser() {
@@ -6,5 +5,5 @@ export default function ListUser() {
     <div className="p-4">
       <TableUser />
     </div>
-  )
+  );
 }

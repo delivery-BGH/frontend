@@ -1,6 +1,5 @@
-
 interface Props {
-  text?: string
+  text?: string;
 }
 
 export default function Divider({ text }: Props) {
@@ -14,5 +13,5 @@ export default function Divider({ text }: Props) {
     >
       {text}
     </div>
-  )
+  );
 }
