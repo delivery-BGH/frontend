@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input } from "@/components/ui/input";
-import { useCadastroCliente } from "@/forms/CadastroCliente/useCadastroCliente";
+import { useCadastroCliente } from "@/forms/Clientes/CadastroCliente/useCadastroCliente";
 
 const CadastroCliente = () => {
   const { register, handleSubmit, handleFormSubmit, errors } = useCadastroCliente();
@@ -20,7 +20,7 @@ const CadastroCliente = () => {
       </div>
 
       <div >
-        <label htmlFor="email">Senha</label>
+        <label htmlFor="senha">Senha</label>
         <Input className="bg-background" type="password" {...register('password')} />
         {errors.password && <span>{errors.password.message}</span>}
       </div>
@@ -52,7 +52,7 @@ const CadastroCliente = () => {
       <div >
         <label htmlFor="bairro">Bairro</label>
         <Input className="bg-background" type="text" {...register('bairro')} />
-        {errors.cidade && <span>{errors.cidade.message}</span>}
+        {errors.bairro && <span>{errors.bairro.message}</span>}
       </div>
 
       <div >
