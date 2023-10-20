@@ -18,7 +18,6 @@ export const updateUserSchema = z.object({
       .nonempty("O E-mail é obrigatório")
       .email("Formato de E-mail inválido")
       .toLowerCase(),
-    password: z.string().min(6, "A senha precisa de no mínimo 6 caracteres"),
     document: z
       .string()
       .min(11, "O tamanho do CPF deve ser de 11 números")

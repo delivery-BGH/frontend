@@ -43,9 +43,10 @@ export const useUpdateUser = () => {
           .finally(() => {});
       }, []);
     
-      async function updateUser(data: any) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      async function updateUser(data: {name: string, email: string, document: string, phoneNumber: number, zipCode: string, city: string, neighborhood: string, street: string, number: string}) {
         axios
-          .put(`http://localhost:3000/user/${params.id}`, data)
+          .put(`http://localhost:3000/user/${params.id}`, {data})
           .then((res) => {
             alert("Usuário atualizado!");
             console.log(res.data);
