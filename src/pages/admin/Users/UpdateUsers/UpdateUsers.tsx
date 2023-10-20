@@ -1,34 +1,23 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input } from "@/components/ui/input";
-import { useCadastroCliente } from "@/forms/Clientes/CadastroCliente/useCadastroCliente";
+import { useUpdateUser } from "@/forms/Clientes/UpdateClientes/useUpdateClientes";
 
-const CadastroCliente = () => {
-  const { register, handleSubmit, handleFormSubmit, errors } =
-    useCadastroCliente();
-
-  return (
-    <form onSubmit={handleSubmit(handleFormSubmit)}>
+export function UpdateUser(){
+ const {register, handleSubmit, errors, updateUser} = useUpdateUser()
+    return (
+        <form onSubmit={handleSubmit(updateUser)}>
       <div>
         <label htmlFor="name">Nome Completo</label>
-        <Input className="bg-background" type="text" {...register("name")} />
+        <Input className="bg-background" type="text" id="name"{...register("name")} />
         {errors.name && <span>{errors.name.message}</span>}
       </div>
 
       <div>
         <label htmlFor="email">E-mail</label>
-        <Input className="bg-background" type="email" {...register("email")} />
+        <Input className="bg-background" type="email" id="email" {...register("email")} />
         {errors.email && <span>{errors.email.message}</span>}
       </div>
 
-      <div>
-        <label htmlFor="senha">Senha</label>
-        <Input
-          className="bg-background"
-          type="password"
-          {...register("password")}
-        />
-        {errors.password && <span>{errors.password.message}</span>}
-      </div>
+      
 
       <div>
         <label htmlFor="cpf">CPF</label>
@@ -36,7 +25,7 @@ const CadastroCliente = () => {
           className="bg-background"
           type="number"
           maxLength={11}
-          {...register("document")}
+          id="cpf"{...register("document")}
         />
         {errors.document && <span>{errors.document.message}</span>}
       </div>
@@ -46,32 +35,32 @@ const CadastroCliente = () => {
         <Input
           className="bg-background"
           type="number"
-          {...register("phoneNumber")}
+          id="phone"{...register("phoneNumber")}
         />
         {errors.phoneNumber && <span>{errors.phoneNumber.message}</span>}
       </div>
 
       <div>
         <label htmlFor="cep">CEP</label>
-        <Input className="bg-background" type="number" {...register("zipCode")} />
+        <Input className="bg-background" type="number" id="cep"{...register("zipCode")} />
         {errors.zipCode && <span>{errors.zipCode.message}</span>}
       </div>
 
       <div>
         <label htmlFor="cidade">Cidade</label>
-        <Input className="bg-background" {...register("city")} />
+        <Input className="bg-background" id="cidade"{...register("city")} />
         {errors.city && <span>{errors.city.message}</span>}
       </div>
 
       <div>
         <label htmlFor="bairro">Bairro</label>
-        <Input className="bg-background" type="text" {...register("neighborhood")} />
+        <Input className="bg-background" type="text" id="bairro" {...register("neighborhood")} />
         {errors.neighborhood && <span>{errors.neighborhood.message}</span>}
       </div>
 
       <div>
         <label htmlFor="rua">Rua</label>
-        <Input className="bg-background" type="text" {...register("street")} />
+        <Input className="bg-background" type="text" id="rua" {...register("street")} />
         {errors.street && <span>{errors.street.message}</span>}
       </div>
 
@@ -80,7 +69,7 @@ const CadastroCliente = () => {
         <Input
           className="bg-background"
           type="number"
-          {...register("number")}
+          id="number"{...register("number")}
         />
         {errors.number && <span>{errors.number.message}</span>}
       </div>
@@ -92,6 +81,5 @@ const CadastroCliente = () => {
       </button>
     </form>
   );
-};
-
-export default CadastroCliente;
+    
+}
