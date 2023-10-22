@@ -10,8 +10,13 @@ import {
   TableRow,
 } from "../ui/table";
 
+import { Input } from "../ui/input";
+import axios from "axios";
+import { Button } from "../ui/button";
+
 export default function TableProdutos() {
   const [produtos, setProdutos] = useState([]);
+  const [valuePesquisa, setValuePesquisa] = useState("")
 
   useEffect(() => {
     getProdutos();
@@ -30,7 +35,36 @@ export default function TableProdutos() {
     }
   };
 
+  const submitPesquisa = () => {
+    axios.get(`http://localhost:3000/product/product/query?filter=${valuePesquisa}`)
+     .then((res) => {
+        console.log(res.data)
+        setProdutos(res.data)
+     })
+     .catch((err) => {
+        console.log(`Não foi possível buscar produto ${err}`)
+     })
+  }
+
+  const limpaPesquisa = () => {
+    getProdutos()
+    setValuePesquisa("")
+  }
+
+
   return (
+    <div>
+      <div className="flex flex-row gap-2">
+        <Input type="text" placeholder="Pesquise por nome" className="w-1/3" value={valuePesquisa} onChange={(ev) => setValuePesquisa(ev.target.value)}/>
+        <button
+        onClick={submitPesquisa}
+        className="bg-blue-500 rounded-lg text-lg p-1 hover:bg-slate-700"
+      >Pesquisar</button>
+      <button
+        onClick={limpaPesquisa}
+        className="bg-rose-600 rounded-lg text-lg p-1 hover:bg-slate-700"
+      >Limpar</button>
+      </div>
     <Table>
       <TableHeader>
         <TableRow>
@@ -66,11 +100,12 @@ export default function TableProdutos() {
             <TableCell>{item.avaliable ? "Sim" : "Não"}</TableCell>
 
             <td>
-              <Link to={`/produtos/${item._id}`}>Detalhes</Link>
+              <Link to={`/produtos/${item._id}`}><Button variant="link">Detalhes</Button></Link>
             </td>
           </TableRow>
         ))}
       </TableBody>
     </Table>
+    </div>
   );
 }
