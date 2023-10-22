@@ -32,24 +32,35 @@ export default function TableUser() {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>ID</TableHead>
+          
           <TableHead>Nome</TableHead>
-          <TableHead>Descrição</TableHead>
+          <TableHead>E-mail</TableHead>
+          <TableHead>CPF</TableHead>
+          <TableHead>Celular</TableHead>
+          <TableHead>CEP</TableHead>
+          <TableHead>Cidade</TableHead>
+          <TableHead>Bairro</TableHead>
+          <TableHead>Rua</TableHead>
+          <TableHead>Numero</TableHead>
+          
+          
         </TableRow>
       </TableHeader>
       <TableBody>
         {users.map((user: any) => (
           <TableRow key={user._id}>
-            <TableCell>{user._id}</TableCell>
+            
             <TableCell>{user.name}</TableCell>
             <TableCell>{user.email}</TableCell>
-            <TableCell>{user.password}</TableCell>
-            <TableCell>{user.cpf}</TableCell>
-            <TableCell>{user.celular}</TableCell>
-            <TableCell>{user.cep}</TableCell>
-            <TableCell>{user.cidade}</TableCell>
-            <TableCell>{user.bairro}</TableCell>
-            <TableCell>{user.rua}</TableCell>
+            
+            <TableCell>{user.document}</TableCell>
+            <TableCell>{user.phoneNumber}</TableCell>
+            <TableCell>{user.zipCode}</TableCell>
+            <TableCell>{user.city}</TableCell>
+            <TableCell>{user.neighborhood}</TableCell>
+            <TableCell>{user.street}</TableCell>
+            <TableCell>{user.number}</TableCell>
+            
             <td>
               <Link to={`/user/${user._id}`}>Detalhes</Link>
             </td>
