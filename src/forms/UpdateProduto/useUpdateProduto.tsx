@@ -3,9 +3,10 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod/dist/zod.js";
 import axios from "axios";
-import { UpdateProduct } from "./type";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateProductSchema } from "./schema";
+import { UpdateProduct } from "./types";
+// import { UpdateProduct } from "./type";
 
 export const useUpdateProduto = () => {
   const params = useParams<{ id: string }>();
@@ -14,7 +15,6 @@ export const useUpdateProduto = () => {
 
   const {
     setValue,
-    getValues,
     register,
     handleSubmit,
     formState: { errors },

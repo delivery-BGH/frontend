@@ -1,21 +1,8 @@
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { useCreateProduto } from "@/forms/CadastroProduto/useCadastroProduto";
 import { useUpdateProduto } from "@/forms/UpdateProduto/useUpdateProduto";
 import axios from "axios";
-import { Toggle } from "@/components/ui/toggle";
 
 export function UpdateProduto() {
   const { errors, handleSubmit, updateProduto, register, deleteProduto } =

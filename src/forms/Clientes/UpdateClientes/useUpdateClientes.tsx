@@ -16,7 +16,7 @@ export const useUpdateUser = () => {
         register,
         handleSubmit,
         formState: { errors },
-      } = useForm<UpdateUser >({
+      } = useForm<UpdateUser>({
         resolver: zodResolver(updateUserSchema),
         mode: "all",
         criteriaMode: "all",
