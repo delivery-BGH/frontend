@@ -68,7 +68,7 @@ export default function TableProdutos() {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>ID</TableHead>
+          
           <TableHead>Nome</TableHead>
           <TableHead>Preço</TableHead>
           <TableHead>Descrição</TableHead>

@@ -11,6 +11,7 @@ import {
 } from "../ui/table";
 import { Link } from "react-router-dom";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 export default function TableUser() {
   const [users, setUsers] = useState([]);
@@ -92,7 +93,7 @@ export default function TableUser() {
             <TableCell>{user.number}</TableCell>
             
             <td>
-              <Link to={`/user/${user._id}`}>Detalhes</Link>
+              <Link to={`/user/${user._id}`}><Button variant="link">Detalhes</Button></Link>
             </td>
           </TableRow>
         ))}
