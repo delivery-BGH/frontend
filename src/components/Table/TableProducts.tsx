@@ -82,7 +82,7 @@ export default function TableProdutos() {
       <TableBody>
         {produtos.map((item: any) => (
           <TableRow key={item._id}>
-            <TableCell>{item._id}</TableCell>
+           
             <TableCell>{item.name}</TableCell>
             <TableCell>R$ {item.price}</TableCell>
             <TableCell>{item.description}</TableCell>

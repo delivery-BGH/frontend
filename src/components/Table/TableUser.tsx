@@ -10,9 +10,11 @@ import {
   TableRow,
 } from "../ui/table";
 import { Link } from "react-router-dom";
+import { Input } from "../ui/input";
 
 export default function TableUser() {
   const [users, setUsers] = useState([]);
+  const [valuePesquisa, setValuePesquisa] = useState("")
 
   useEffect(() => {
     getUser();
@@ -28,7 +30,35 @@ export default function TableUser() {
     }
   };
 
+  const submitPesquisaUsers = () => {
+    axios.get(`http://localhost:3000/user/user/query?filter=${valuePesquisa}`)
+     .then((res) => {
+        console.log(res.data)
+        setUsers(res.data)
+     })
+     .catch((err) => {
+        console.log(`Não foi possível buscar produto ${err}`)
+     })
+  }
+
+  const limpaPesquisa = () => {
+    getUser()
+    setValuePesquisa("")
+  }
+
   return (
+    <div>
+      <div className="flex flex-row gap-2">
+        <Input type="text" placeholder="Pesquise por nome" className="w-1/3" value={valuePesquisa} onChange={(ev) => setValuePesquisa(ev.target.value)}/>
+        <button
+        onClick={submitPesquisaUsers}
+        className="bg-blue-500 rounded-lg text-lg p-1 hover:bg-slate-700"
+      >Pesquisar</button>
+      <button
+        onClick={limpaPesquisa}
+        className="bg-rose-600 rounded-lg text-lg p-1 hover:bg-slate-700"
+      >Limpar</button>
+      </div>
     <Table>
       <TableHeader>
         <TableRow>
@@ -68,5 +98,6 @@ export default function TableUser() {
         ))}
       </TableBody>
     </Table>
+    </div>
   );
 }
