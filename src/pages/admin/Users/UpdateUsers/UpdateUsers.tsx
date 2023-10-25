@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { useUpdateUser } from "@/forms/Clientes/UpdateClientes/useUpdateClientes";
 
 export function UpdateUser(){
- const {register, handleSubmit, errors, updateUser} = useUpdateUser()
+ const {register, handleSubmit, errors, updateUser, deleteUser} = useUpdateUser()
     return (
         <form onSubmit={handleSubmit(updateUser)}>
       <div>
@@ -73,12 +73,20 @@ export function UpdateUser(){
         />
         {errors.number && <span>{errors.number.message}</span>}
       </div>
+      <div className="flex flex-row gap-2">
       <button
         type="submit"
         className="bg-lime-600 rounded-lg text-2xl p-2 mt-3 hover:bg-slate-700"
       >
-        Cadastrar
+        Salvar
       </button>
+      <button
+        onClick={deleteUser}
+        className="bg-rose-600 rounded-lg text-2xl p-2 mt-3 hover:bg-slate-700"
+      >
+        Excluir
+      </button>
+      </div>
     </form>
   );
     

@@ -22,6 +22,7 @@ export function UpdateCategory() {
             <Input type="text" id="description" {...register("description")} />
             {errors.description && <span>{errors.description?.message}</span>}
           </div>
+          <div className="flex flex-row gap-2">
           <button
             type="submit"
             className="bg-lime-600 rounded-lg text-2xl p-2 mt-3 hover:bg-slate-700"
@@ -35,6 +36,7 @@ export function UpdateCategory() {
           >
             Excluir
           </button>
+          </div>
         </form>
       </div>
     </>

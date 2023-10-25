@@ -57,5 +57,18 @@ export const useUpdateUser = () => {
           .finally(() => {});
       }
 
-      return {register, handleSubmit, errors, updateUser}
+      const deleteUser = (data: any) => {
+        const confirma = confirm("Deseja excluir essa usuário??");
+        if (confirma) {
+          axios
+            .delete(`http://localhost:3000/user/${params.id}`, data)
+            .then((res) => {
+              alert("Usuário excluido!");
+              console.log(res.data);
+              navigate("/user");
+            });
+        }
+      };
+
+      return {register, handleSubmit, errors, updateUser, deleteUser}
 }
