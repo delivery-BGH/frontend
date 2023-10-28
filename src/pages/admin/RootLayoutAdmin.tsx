@@ -13,6 +13,7 @@ export default function RootLayoutAdmin() {
             <Link to="/">Início</Link>
             <Link to="/produtos">Produtos</Link>
             <Link to="/category">Categorias</Link>
+            <Link to="/sideDish">Acompanhamentos</Link>
             <Link to="/user">Usuários</Link>
           </nav>
           <Menu />
