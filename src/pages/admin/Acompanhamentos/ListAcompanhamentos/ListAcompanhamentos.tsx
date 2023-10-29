@@ -1,8 +1,12 @@
-export function ListAcompanhamentos(){
+import TableSideDish from "@/components/Table/TableSideDish";
+
+export default function ListAcompanhamentos(){
 
     return (
         <>
-        <h2>Lista</h2>
+        <div className="p-4">
+        <TableSideDish />
+        </div>
         </>
     )
 }

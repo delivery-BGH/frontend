@@ -18,8 +18,9 @@ import ListUser from "@/pages/admin/Users/ListUser/ListUser";
 import { UpdateUser } from "@/pages/admin/Users/UpdateUsers/UpdateUsers";
 import AcompanhamentosLayout from "@/pages/admin/Acompanhamentos/AcompanhamentosLayout/AcompanhamentosLayout";
 import { CadastroAcompanhamentos } from "@/pages/admin/Acompanhamentos/CadastroAcompanhamento/CadastroAcompanhamentos";
-import { ListAcompanhamentos } from "@/pages/admin/Acompanhamentos/ListAcompanhamentos/ListAcompanhamentos";
+
 import { UpdateAcompanhamentos } from "@/pages/admin/Acompanhamentos/UpdateAcompanhamentos/UpdateAcompanhamentos";
+import ListAcompanhamentos from "@/pages/admin/Acompanhamentos/ListAcompanhamentos/ListAcompanhamentos";
 
 export const router = createBrowserRouter([
   {
