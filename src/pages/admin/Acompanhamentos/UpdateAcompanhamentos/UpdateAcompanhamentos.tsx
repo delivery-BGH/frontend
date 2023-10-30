@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import useUpdateAcompanhamentos from "@/forms/Acompanhamentos/UpdateAcompanhamentos/useUpdateAcompanhamentos";
 
 export function UpdateAcompanhamentos(){
- const {register, handleSubmit, errors, UpdateAcompanhamentos} = useUpdateAcompanhamentos()
+ const {register, handleSubmit, errors, UpdateAcompanhamentos, DeleteAcompanhamentos} = useUpdateAcompanhamentos()
     return (
         <>
         <>
@@ -28,12 +28,21 @@ export function UpdateAcompanhamentos(){
           <input type="checkbox" {...register("avaliable")} />
           <span>{errors.avaliable?.message}</span>
         </div>
+        <div className="flex flex-row gap-2">
           <button
             type="submit"
             className="bg-lime-600 rounded-lg text-2xl p-2 mt-3 hover:bg-slate-700"
           >
             Salvar
           </button>
+          <button
+            type="button"
+            className="bg-red-600 rounded-lg text-2xl p-2 mt-3 hover:bg-slate-700"
+            onClick={DeleteAcompanhamentos}
+          >
+            Excluir
+          </button>
+        </div>
         </form>
       </div>
     </>

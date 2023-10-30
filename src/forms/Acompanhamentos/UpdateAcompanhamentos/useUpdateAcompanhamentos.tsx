@@ -49,5 +49,17 @@ export default function useUpdateAcompanhamentos(){
       });
       }
 
-      return {register, handleSubmit, UpdateAcompanhamentos, errors}
+      const DeleteAcompanhamentos = (data: any) => {
+        const confirma = confirm("Deseja excluir esse acompanhamento?")
+        if(confirma){
+            axios.delete(`http://localhost:3000/sideDish/${params.id}`, data)
+            .then((res) => {
+                console.log(res.data)
+                alert("Acompanhamento excluído!")
+                navigate("/sideDish")
+            })
+        }
+      }
+
+      return {register, handleSubmit, UpdateAcompanhamentos, errors, DeleteAcompanhamentos}
 }
