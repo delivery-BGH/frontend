@@ -16,6 +16,11 @@ import { UpdateCategory } from "@/pages/admin/Categorias/UpdateCategory/UpdateCa
 import UsersLayout from "@/pages/admin/Users/UsersLayout/UsersLayout";
 import ListUser from "@/pages/admin/Users/ListUser/ListUser";
 import { UpdateUser } from "@/pages/admin/Users/UpdateUsers/UpdateUsers";
+import AcompanhamentosLayout from "@/pages/admin/Acompanhamentos/AcompanhamentosLayout/AcompanhamentosLayout";
+import { CadastroAcompanhamentos } from "@/pages/admin/Acompanhamentos/CadastroAcompanhamento/CadastroAcompanhamentos";
+
+import { UpdateAcompanhamentos } from "@/pages/admin/Acompanhamentos/UpdateAcompanhamentos/UpdateAcompanhamentos";
+import ListAcompanhamentos from "@/pages/admin/Acompanhamentos/ListAcompanhamentos/ListAcompanhamentos";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +48,15 @@ export const router = createBrowserRouter([
           { index: true, element: <ListCategory /> },
           { path: "new", element: <CadastroCategorias /> },
           { path: ":id", element: <UpdateCategory /> },
+        ],
+      },
+      {
+        path: "sideDish",
+        element: <AcompanhamentosLayout />,
+        children: [
+          { index: true, element: <ListAcompanhamentos /> },
+          { path: "new", element: <CadastroAcompanhamentos /> },
+          { path: ":id", element: <UpdateAcompanhamentos /> },
         ],
       },
       {
