@@ -3,12 +3,15 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useUpdateProduto } from "@/forms/UpdateProduto/useUpdateProduto";
 import axios from "axios";
+import {Modal} from "../../../../components/Modal/ModalAcompanhamentos/Modal.tsx"
 
 export function UpdateProduto() {
   const { errors, handleSubmit, updateProduto, register, deleteProduto } =
     useUpdateProduto();
   const [categories, setCategories] =
     useState<Array<{ _id: string; name: string }>>();
+  
+  const [open, setOpen] = useState<boolean>(false)
 
   useEffect(() => {
     axios
@@ -31,6 +34,9 @@ export function UpdateProduto() {
         )}
       >
         Loading
+      </div>
+      <div>
+        <Modal isOpen={open} setOpen={setOpen}/>
       </div>
       <form onSubmit={handleSubmit(updateProduto)}>
         <div>
@@ -106,6 +112,7 @@ export function UpdateProduto() {
           >
             Salvar
           </button>
+          
           <button
             type="button"
             className="bg-red-600 rounded-lg text-2xl p-2 mt-3 hover:bg-slate-700"
@@ -115,6 +122,12 @@ export function UpdateProduto() {
           </button>
         </div>
       </form>
+      <button
+            onClick={() => setOpen(!open)}
+            className="bg-blue-600 rounded-lg text-2xl p-2 mt-3 hover:bg-slate-700"
+          >
+            Acompanhamentos
+          </button>
 
       {/* <AlertDialog open={statusForm}>
         <AlertDialogContent >
