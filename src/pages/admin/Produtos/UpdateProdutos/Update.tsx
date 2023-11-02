@@ -26,14 +26,15 @@ export function UpdateProduto() {
         console.log(err);
       });
 
-    axios.get(`http://localhost:3000/product/${params.id}`).then((res) => {
-      const parse = productSchema.safeParse(res.data);
-      if (parse.success) {
-        setPRodutos(res.data);
-      } else {
-        console.log(parse);
-      }
-    });
+    axios.get(`http://localhost:3000/product/${params.id}`)
+      .then((res) => {
+        const parse = productSchema.safeParse(res.data);
+        if (parse.success) {
+          setPRodutos(res.data);
+        } else {
+          console.log(parse);
+        }
+      });
   }, []);
 
   return (

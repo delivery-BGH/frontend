@@ -1,10 +1,13 @@
+
 import { Card } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import { formatPrice } from "@/helper/formtPrice";
 import { deliveryInstance } from "@/services/deliveryInstance";
 import {
   Acompanhamento,
   acompanhamentosSchema,
 } from "@/validators/acompanhamento/Acompanhamento";
+import { clear } from "console";
 import React, { useEffect, useState } from "react";
 
 interface IModal {
@@ -14,12 +17,12 @@ interface IModal {
 
 export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
   const [sideDish, setSideDish] = useState<Array<Acompanhamento>>();
+  const [lista, setLista] = useState<Array<string>>()
 
   useEffect(() => {
     deliveryInstance
       .get("/sideDish")
       .then((res) => {
-        console.log(res.data);
         const parse = acompanhamentosSchema.array().safeParse(res.data);
         if (parse.success) {
           setSideDish(parse.data);
@@ -32,6 +35,23 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
       });
   }, []);
 
+  const handler = (id: string) => {
+    console.log("[Lista] - ", lista);
+    console.log("[ID] - ", id);
+
+    const existe = lista?.filter((element) => element === id)
+    if (existe) {
+      console.log("Existe")
+    } else {
+      console.log("Nao existe")
+      lista?.push(id)
+    }
+  }
+
+  useEffect(() => {
+    console.log(lista)
+  }, [lista])
+
   if (isOpen) {
     return (
       <div>
@@ -43,10 +63,13 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
 
           <Card className="w-full">
             {sideDish?.map((element) => (
-              <Card key={element._id} className="p-2">
-                <p>{element.name}</p>
-                <p>{element.description}</p>
-                <p>{formatPrice(element.price)}</p>
+              <Card key={element._id} className="flex items-center gap-2 p-2">
+                <Checkbox id={element._id} onClick={((ev) => { handler(ev.currentTarget.id) })} />
+                <div>
+                  <p>{element.name}</p>
+                  <p>{element.description}</p>
+                  <p>{formatPrice(element.price)}</p>
+                </div>
               </Card>
             ))}
           </Card>
