@@ -4,12 +4,15 @@ import { cn } from "@/lib/utils";
 import { useUpdateProduto } from "@/forms/UpdateProduto/useUpdateProduto";
 import axios from "axios";
 import {Modal} from "../../../../components/Modal/ModalAcompanhamentos/Modal.tsx"
+import { useParams } from "react-router-dom";
 
 export function UpdateProduto() {
   const { errors, handleSubmit, updateProduto, register, deleteProduto } =
     useUpdateProduto();
   const [categories, setCategories] =
     useState<Array<{ _id: string; name: string }>>();
+    const [produtos, setProdutos] = useState([]);
+     const params = useParams()
   
   const [open, setOpen] = useState<boolean>(false)
 
@@ -21,9 +24,14 @@ export function UpdateProduto() {
       })
       .catch((err) => {
         console.log(err);
-      })
-      .finally(() => {});
+      });
+    axios.get(`http://localhost:3000/product/`)
+    .then((res) => {
+      setProdutos(res.data)
+    }); 
   }, []);
+
+
 
   return (
     <div className=" w-4/5">
@@ -129,22 +137,14 @@ export function UpdateProduto() {
             Acompanhamentos
           </button>
 
-      {/* <AlertDialog open={statusForm}>
-        <AlertDialogContent >
-          <AlertDialogHeader>
-            <AlertDialogTitle>Gabriel é muito lindo!</AlertDialogTitle>
-            <AlertDialogDescription>
-              Gabriel é muito lindo!
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogAction onClick={() => {
-              navigate('/');
-              setStatus(false);
-            }}>Continue</AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog> */}
+          <div>
+        <h1 className="text-xl">Acompanhamentos:</h1>
+        {produtos.map((ac: any) => (
+          <ul key={ac._id}>
+            <li>{ac.sideDish.name}</li>
+          </ul>
+        ))}
+      </div>
     </div>
   );
 }
