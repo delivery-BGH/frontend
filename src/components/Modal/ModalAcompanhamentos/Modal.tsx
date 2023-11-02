@@ -7,7 +7,6 @@ import {
   Acompanhamento,
   acompanhamentosSchema,
 } from "@/validators/acompanhamento/Acompanhamento";
-import { clear } from "console";
 import React, { useEffect, useState } from "react";
 
 interface IModal {

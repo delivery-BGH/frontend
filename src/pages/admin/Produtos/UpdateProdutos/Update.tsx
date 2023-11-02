@@ -12,7 +12,7 @@ export function UpdateProduto() {
     useUpdateProduto();
   const [categories, setCategories] =
     useState<Array<{ _id: string; name: string }>>();
-  const [produtos, setPRodutos] = useState<Produto>();
+  const [produto, setProduto] = useState<Produto>();
   const params = useParams<{ id: string }>();
   const [open, setOpen] = useState<boolean>(false);
 
@@ -30,7 +30,7 @@ export function UpdateProduto() {
       .then((res) => {
         const parse = productSchema.safeParse(res.data);
         if (parse.success) {
-          setPRodutos(res.data);
+          setProduto(parse.data);
         } else {
           console.log(parse);
         }
@@ -143,7 +143,7 @@ export function UpdateProduto() {
 
       <div>
         <h1 className="text-xl">Acompanhamentos:</h1>
-        {produtos?.sideDish.map((sideDish) => (
+        {produto?.sideDish.map((sideDish) => (
           <ul key={sideDish._id}>
             <li>{sideDish.name}</li>
           </ul>
