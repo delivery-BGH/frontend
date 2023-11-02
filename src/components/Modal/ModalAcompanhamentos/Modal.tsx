@@ -44,7 +44,7 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
       console.log("Existe")
     } else {
       console.log("Nao existe")
-      lista?.push(id)
+      // setLista()
     }
   }
 
