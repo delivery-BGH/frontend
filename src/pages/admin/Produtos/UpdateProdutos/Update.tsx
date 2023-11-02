@@ -3,18 +3,18 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useUpdateProduto } from "@/forms/UpdateProduto/useUpdateProduto";
 import axios from "axios";
-import {Modal} from "../../../../components/Modal/ModalAcompanhamentos/Modal.tsx"
+import { Modal } from "../../../../components/Modal/ModalAcompanhamentos/Modal.tsx";
 import { useParams } from "react-router-dom";
+import { Produto, productSchema } from "@/validators/produto/Produto.ts";
 
 export function UpdateProduto() {
   const { errors, handleSubmit, updateProduto, register, deleteProduto } =
     useUpdateProduto();
   const [categories, setCategories] =
     useState<Array<{ _id: string; name: string }>>();
-    const [produtos, setProdutos] = useState([]);
-     const params = useParams()
-  
-  const [open, setOpen] = useState<boolean>(false)
+  const [produtos, setPRodutos] = useState<Produto>();
+  const params = useParams<{ id: string }>();
+  const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
     axios
@@ -25,13 +25,16 @@ export function UpdateProduto() {
       .catch((err) => {
         console.log(err);
       });
-    axios.get(`http://localhost:3000/product/`)
-    .then((res) => {
-      setProdutos(res.data)
-    }); 
+
+    axios.get(`http://localhost:3000/product/${params.id}`).then((res) => {
+      const parse = productSchema.safeParse(res.data);
+      if (parse.success) {
+        setPRodutos(res.data);
+      } else {
+        console.log(parse);
+      }
+    });
   }, []);
-
-
 
   return (
     <div className=" w-4/5">
@@ -44,7 +47,7 @@ export function UpdateProduto() {
         Loading
       </div>
       <div>
-        <Modal isOpen={open} setOpen={setOpen}/>
+        <Modal isOpen={open} setOpen={setOpen} />
       </div>
       <form onSubmit={handleSubmit(updateProduto)}>
         <div>
@@ -120,7 +123,7 @@ export function UpdateProduto() {
           >
             Salvar
           </button>
-          
+
           <button
             type="button"
             className="bg-red-600 rounded-lg text-2xl p-2 mt-3 hover:bg-slate-700"
@@ -131,17 +134,17 @@ export function UpdateProduto() {
         </div>
       </form>
       <button
-            onClick={() => setOpen(!open)}
-            className="bg-blue-600 rounded-lg text-2xl p-2 mt-3 hover:bg-slate-700"
-          >
-            Acompanhamentos
-          </button>
+        onClick={() => setOpen(!open)}
+        className="bg-blue-600 rounded-lg text-2xl p-2 mt-3 hover:bg-slate-700"
+      >
+        Acompanhamentos
+      </button>
 
-          <div>
+      <div>
         <h1 className="text-xl">Acompanhamentos:</h1>
-        {produtos.map((ac: any) => (
-          <ul key={ac._id}>
-            <li>{ac.sideDish.name}</li>
+        {produtos?.sideDish.map((sideDish) => (
+          <ul key={sideDish._id}>
+            <li>{sideDish.name}</li>
           </ul>
         ))}
       </div>

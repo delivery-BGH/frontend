@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { updateAcompanhamentoFormSchema } from "../Acompanhamentos/UpdateAcompanhamentos/schema";
 
 export const updateProductSchema = z.object({
   name: z.string().nonempty("Nome obrigatório"),
@@ -10,19 +11,22 @@ export const updateProductSchema = z.object({
   //   name: z.string(),
   //   description: z.string()
   // }),
+  sideDish: z.array(updateAcompanhamentoFormSchema),
   category: z.string(),
-  img: z.string().refine(
-    (value) => {
-      // Adicione sua lógica de validação personalizada para a URL aqui
-      // Por exemplo, você pode usar uma expressão regular para verificar se é uma URL válida.
-      // Aqui está um exemplo simples que verifica se a URL começa com "http://" ou "https://":
-      return value.startsWith("http://") || value.startsWith("https://");
-    },
-    {
-      message: "URL inválida",
-    }
-  ),
+  img: z.string(),
+  // img: z.string().refine((value) => {
+  //     // Adicione sua lógica de validação personalizada para a URL aqui
+  //     // Por exemplo, você pode usar uma expressão regular para verificar se é uma URL válida.
+  //     // Aqui está um exemplo simples que verifica se a URL começa com "http://" ou "https://":
+  //     return value.startsWith("http://") || value.startsWith("https://");
+  //   },
+  //   {
+  //     message: "URL inválida",
+  //   }
+  // ),
 
   activePromotion: z.boolean(),
   avaliable: z.boolean(),
 });
+
+updateAcompanhamentoFormSchema;

@@ -53,7 +53,11 @@ const CadastroCliente = () => {
 
       <div>
         <label htmlFor="cep">CEP</label>
-        <Input className="bg-background" type="number" {...register("zipCode")} />
+        <Input
+          className="bg-background"
+          type="number"
+          {...register("zipCode")}
+        />
         {errors.zipCode && <span>{errors.zipCode.message}</span>}
       </div>
 
@@ -65,7 +69,11 @@ const CadastroCliente = () => {
 
       <div>
         <label htmlFor="bairro">Bairro</label>
-        <Input className="bg-background" type="text" {...register("neighborhood")} />
+        <Input
+          className="bg-background"
+          type="text"
+          {...register("neighborhood")}
+        />
         {errors.neighborhood && <span>{errors.neighborhood.message}</span>}
       </div>
 

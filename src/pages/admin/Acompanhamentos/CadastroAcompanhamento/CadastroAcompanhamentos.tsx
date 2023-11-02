@@ -2,10 +2,9 @@
 import { Input } from "@/components/ui/input";
 import { useCreateAcompanhamento } from "@/forms/Acompanhamentos/CadastroAcompanhamentos/useCadastroAcompanhamentos";
 
-
 export function CadastroAcompanhamentos() {
   const { register, errors, handleSubmit, CreateAcompanhamentos } =
-  useCreateAcompanhamento();
+    useCreateAcompanhamento();
 
   const submit = (data: any) => {
     CreateAcompanhamentos(data);
@@ -26,14 +25,19 @@ export function CadastroAcompanhamentos() {
           </div>
           <div>
             <label htmlFor="price">Preço:</label>
-            <Input type="number" id="price" step={0.01}{...register("price")} />
+            <Input
+              type="number"
+              id="price"
+              step={0.01}
+              {...register("price")}
+            />
             {errors.price && <span>{errors.price?.message}</span>}
           </div>
           <div className="">
-          <h4>Disponível</h4>
-          <input type="checkbox" {...register("avaliable")} />
-          <span>{errors.avaliable?.message}</span>
-        </div>
+            <h4>Disponível</h4>
+            <input type="checkbox" {...register("avaliable")} />
+            <span>{errors.avaliable?.message}</span>
+          </div>
           <button
             type="submit"
             className="bg-lime-600 rounded-lg text-2xl p-2 mt-3 hover:bg-slate-700"
