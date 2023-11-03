@@ -22,7 +22,7 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
   const [sideDishh, setSideDishh] = useState<Array<Acompanhamento>>();
   const [lista, setLista] = useState<Array<string>>([])
   const [produto, setProduto] = useState<Produto>()
-  const [valorCheck, setValorCheck] = useState<boolean>()
+  const [valorCheck, setValorCheck] = useState<boolean>(false)
   const params = useParams<{ id: string }>();
   useEffect(() => {
     deliveryInstance
@@ -75,11 +75,21 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
 
   const removeAcompanhamentoArray = (id: string) => {
     
-    const novoArr = lista.filter((item : string) => item === id )
+    const novoArr = lista.filter((item : string) => item !== id )
     console.log("novoArray", novoArr)
     console.log(id)
-    setLista([...lista, id])
+    setLista(novoArr)
   }
+
+  const trueorfalse = (id) => {
+    setValorCheck(!valorCheck);
+
+    if (!valorCheck) {
+        adicionaAcompanhamentoArray(id);
+    } else {
+        removeAcompanhamentoArray(id);
+    }
+};
 
   const addSideDish = (data: any) => {
     
@@ -109,15 +119,8 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
             {sideDishh?.map((element) => (
               <Card key={element._id} className="flex items-center gap-2 p-2">
                 <input type="checkbox" id={element._id}  value={valorCheck} onClick={(ev) => {
-                  setValorCheck(!valorCheck); 
-                  if(ev.currentTarget.value){
-                    adicionaAcompanhamentoArray(ev.currentTarget.id)
-                    console.log("Adicionar")
-                  } else {
-                    removeAcompanhamentoArray(ev.currentTarget.id)
-                    console.log("Remover")
-                  }
-                  console.log(ev.currentTarget.value); }} />
+                  trueorfalse(ev.currentTarget.id)
+                  console.log(ev.currentTarget.checked); }} /> 
                 <div>
                   <p>{element.name}</p>
                   <p>{element.description}</p>
