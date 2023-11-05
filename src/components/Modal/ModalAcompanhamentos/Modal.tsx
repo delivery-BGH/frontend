@@ -1,18 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Card } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { useUpdateProduto } from "@/forms/UpdateProduto/useUpdateProduto";
+
 import { formatPrice } from "@/helper/formtPrice";
 import { deliveryInstance } from "@/services/deliveryInstance";
 import {
   Acompanhamento,
   acompanhamentosSchema,
 } from "@/validators/acompanhamento/Acompanhamento";
-import { Produto } from "@/validators/produto/Produto";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 
 
 interface IModal {
@@ -23,10 +21,10 @@ interface IModal {
 export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
   const [sideDishh, setSideDishh] = useState<Array<Acompanhamento>>();
   const [lista, setLista] = useState<Array<string>>([])
-  const [produto, setProduto] = useState<Produto>()
-  const [valorCheck, setValorCheck] = useState<boolean>(false)
+
+  
   const params = useParams<{ id: string }>();
- const navigate = useNavigate()
+ 
   useEffect(() => {
     deliveryInstance
         .get("/sideDish")
@@ -42,14 +40,7 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
             console.log(err);
         });
 
-    deliveryInstance
-        .get(`/product/${params.id}`)
-        .then((res) => {
-            setProduto(res.data.sideDish);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    
 }, []);
 
   /*const handler = (id: string) => {
@@ -88,7 +79,7 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
     axios.put(`http://localhost:3000/product/${params.id}`, {sideDish: lista})
     .then((res) => {
       alert("Acompanhamento atualizando")
-      navigate(`/produtos/`)
+      location.reload()
     })
    
   }
@@ -105,7 +96,7 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
           <Card className="w-full">
             {sideDishh?.map((element) => (
               <Card key={element._id} className="flex items-center gap-2 p-2">
-                <input type="checkbox" id={element._id}  value={valorCheck} onClick={(ev) => {
+                <input type="checkbox" id={element._id}   onClick={(ev) => {
                   handlerListaAcompanhamento(ev.currentTarget.id)
                   console.log(ev.currentTarget.checked); }} /> 
                 <div>
