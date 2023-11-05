@@ -11,7 +11,7 @@ export const updateProductSchema = z.object({
   //   name: z.string(),
   //   description: z.string()
   // }),
-  sideDish: z.array(updateAcompanhamentoFormSchema),
+  
   category: z.string(),
   img: z.string(),
   // img: z.string().refine((value) => {
@@ -29,4 +29,4 @@ export const updateProductSchema = z.object({
   avaliable: z.boolean(),
 });
 
-updateAcompanhamentoFormSchema;
+
