@@ -62,9 +62,10 @@ export const router = createBrowserRouter([
       {
         path: "user",
         element: <UsersLayout />,
-        children: [{ index: true, element: <ListUser /> },
-        { path: ":id", element: <UpdateUser /> }
-      ],
+        children: [
+          { index: true, element: <ListUser /> },
+          { path: ":id", element: <UpdateUser /> },
+        ],
       },
     ],
   },

@@ -36,6 +36,7 @@ export const useUpdateProduto = () => {
         setValue("category", res.data.category._id);
         setValue("activePromotion", res.data.activePromotion);
         setValue("avaliable", res.data.avaliable);
+       
       })
       .catch((err) => {
         console.log(err);
@@ -43,7 +44,7 @@ export const useUpdateProduto = () => {
       .finally(() => {});
   }, []);
 
-  async function updateProduto(data: any) {
+  async function updateProduto(data) {
     axios
       .put(`http://localhost:3000/product/${params.id}`, data)
       .then((res) => {
@@ -56,7 +57,7 @@ export const useUpdateProduto = () => {
       .finally(() => {});
   }
 
-  async function deleteProduto(data: any) {
+  async function deleteProduto(data) {
     const confirma = confirm("Deseja excluir esse produto?");
     if (confirma) {
       axios
