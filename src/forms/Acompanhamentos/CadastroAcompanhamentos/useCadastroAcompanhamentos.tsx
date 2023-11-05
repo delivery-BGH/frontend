@@ -20,7 +20,8 @@ export function useCreateAcompanhamento() {
     axios
       .post(`http://localhost:3000/sideDish`, { ...data })
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data)
+        alert("Acompanhamentos cadastrado");
       })
       .catch((err) => {
         console.log(`Não foi possível cadastrar acompanhamento ${err}`);

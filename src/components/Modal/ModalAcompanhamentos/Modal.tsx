@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useUpdateProduto } from "@/forms/UpdateProduto/useUpdateProduto";
 import { formatPrice } from "@/helper/formtPrice";
 import { deliveryInstance } from "@/services/deliveryInstance";
 import {
@@ -10,7 +12,7 @@ import {
 import { Produto } from "@/validators/produto/Produto";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 interface IModal {
@@ -24,6 +26,7 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
   const [produto, setProduto] = useState<Produto>()
   const [valorCheck, setValorCheck] = useState<boolean>(false)
   const params = useParams<{ id: string }>();
+ const navigate = useNavigate()
   useEffect(() => {
     deliveryInstance
         .get("/sideDish")
@@ -49,61 +52,45 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
         });
 }, []);
 
-  const handler = (id: string) => {
+  /*const handler = (id: string) => {
     console.log("[Lista] - ", lista);
     console.log("[ID] - ", id);
 
-    const existe = lista?.filter((element) => element === id)
-    if (existe) {
+    const existe = lista.find((element) => element === id)
+    console.log(existe)
+      if (existe) {
       console.log("Existe")
     } else {
       console.log("Nao existe")
       // setLista()
     }
-  }
+  } */
 
-  useEffect(() => {
-    console.log(lista)
-  }, [lista])
+  const handlerListaAcompanhamento = (id: string) => {
+    const existe = lista.find((item) => item === id);
 
-  const adicionaAcompanhamentoArray = (id: string) => {
-    
-    console.log(lista)
-    console.log(id)
-    setLista([...lista, id])
-  }
+    console.log("[Existe] - ", existe);
 
-  const removeAcompanhamentoArray = (id: string) => {
-    
-    const novoArr = lista.filter((item : string) => item !== id )
-    console.log("novoArray", novoArr)
-    console.log(id)
-    setLista(novoArr)
-  }
-
-  const trueorfalse = (id) => {
-    setValorCheck(!valorCheck);
-
-    if (!valorCheck) {
-        adicionaAcompanhamentoArray(id);
+    if (existe) {
+      const novoArr = lista.filter((item: string) => item != id);
+      setLista(novoArr);
+      console.log(novoArr)
     } else {
-        removeAcompanhamentoArray(id);
+      setLista([...lista, id]);
     }
-};
+  };
 
-  const addSideDish = (data: any) => {
-    
-     if(valorCheck){
-      console.log(data)
-      // axios.put(`http://localhost:3000/product/${params.id}`, data)
-      // .then((res) => {
-        
-      //   console.log(res.data)
-      // })
-      // .catch((err) => {
-      //   console.log(err)
-      // })
-     }
+
+
+ 
+
+  const addSideDish = () => {
+    axios.put(`http://localhost:3000/product/${params.id}`, {sideDish: lista})
+    .then((res) => {
+      alert("Acompanhamento atualizando")
+      navigate(`/produtos/`)
+    })
+   
   }
 
   if (isOpen) {
@@ -119,7 +106,7 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
             {sideDishh?.map((element) => (
               <Card key={element._id} className="flex items-center gap-2 p-2">
                 <input type="checkbox" id={element._id}  value={valorCheck} onClick={(ev) => {
-                  trueorfalse(ev.currentTarget.id)
+                  handlerListaAcompanhamento(ev.currentTarget.id)
                   console.log(ev.currentTarget.checked); }} /> 
                 <div>
                   <p>{element.name}</p>
@@ -132,11 +119,11 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
 
           <div className="flex gap-2">
             <button
-             // onClick={() => addSideDish()}
+             onClick={addSideDish}
               style={{ padding: "0.7rem", color: "white" }}
               className="rounded bg-blue-400 text-lg"
             >
-              Adicionar
+              Salvar
             </button>
             <button
               style={{ padding: "0.7rem", color: "white" }}
