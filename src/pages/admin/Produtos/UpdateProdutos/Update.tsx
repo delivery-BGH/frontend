@@ -48,7 +48,7 @@ export function UpdateProduto() {
         Loading
       </div>
       <div>
-        <Modal isOpen={open} setOpen={setOpen} />
+        <Modal isOpen={open} setOpen={setOpen} acompanhamentos={produto?.sideDish}/>
       </div>
       <form onSubmit={handleSubmit(updateProduto)}>
         <div>

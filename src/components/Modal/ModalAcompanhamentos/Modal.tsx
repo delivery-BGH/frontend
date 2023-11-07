@@ -9,6 +9,7 @@ import {
   acompanhamentosSchema,
 } from "@/validators/acompanhamento/Acompanhamento";
 import axios from "axios";
+import { use } from "i18next";
 import React, { useEffect, useState } from "react";
 import {  useParams } from "react-router-dom";
 
@@ -16,12 +17,13 @@ import {  useParams } from "react-router-dom";
 interface IModal {
   isOpen: boolean;
   setOpen: (isOpen: boolean) => void;
+  acompanhamentos: Array<Acompanhamento> | undefined
 }
 
-export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
+export const Modal: React.FC<IModal> = ({ isOpen, setOpen, acompanhamentos }) => {
   const [sideDishh, setSideDishh] = useState<Array<Acompanhamento>>();
   const [lista, setLista] = useState<Array<string>>([])
-
+  const [validaCheck, setValidaCheck] = useState<boolean>()
   
   const params = useParams<{ id: string }>();
  
@@ -68,6 +70,18 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
       console.log(novoArr)
     } else {
       setLista([...lista, id]);
+      
+    }
+  
+  };
+
+  const verifica = (id: string) => {
+    const existe1 = lista.find((item) => item === id);
+    
+    if(existe1){
+      setValidaCheck(true)
+    } else {
+      setValidaCheck(false)
     }
   };
 
@@ -94,19 +108,18 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
           <h2>Selecione um acompanhamento</h2>
 
           <Card className="w-full">
-            {sideDishh?.map((element) => (
-              <Card key={element._id} className="flex items-center gap-2 p-2">
-                <input type="checkbox" id={element._id}   onClick={(ev) => {
-                  handlerListaAcompanhamento(ev.currentTarget.id)
-                  console.log(ev.currentTarget.checked); }} /> 
-                <div>
-                  <p>{element.name}</p>
-                  <p>{element.description}</p>
-                  <p>{formatPrice(element.price)}</p>
-                </div>
-              </Card>
-            ))}
-          </Card>
+  {sideDishh?.map((element) => (
+    <Card key={element._id} className="flex items-center gap-2 p-2">
+     <InputAcompanhamento lista={lista} element={element} handlerListaAcompanhamento={handlerListaAcompanhamento} acompanhamentos={acompanhamentos}/>
+      <div>
+        <p>{element.name}</p>
+        <p>{element.description}</p>
+        <p>{formatPrice(element.price)}</p>
+      </div>
+    </Card>
+  ))}
+</Card>
+
 
           <div className="flex gap-2">
             <button
@@ -131,3 +144,34 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
     return null; 
   }
 };
+interface Prop {
+  lista: any, 
+  element: any,
+  handlerListaAcompanhamento: (id: string) => void
+  acompanhamentos: Array<Acompanhamento> | undefined
+  
+}
+const InputAcompanhamento = ({lista, element, handlerListaAcompanhamento, acompanhamentos}: Prop	) => {
+  useEffect(() => {
+    
+    const x = acompanhamentos?.find((ac) => ac._id === element._id)
+    if(x){
+      setValidaCheck(true)
+      console.log("SE fuder gabriel")
+    }
+  }, [acompanhamentos])
+  const [validaCheck, setValidaCheck] = useState<boolean>()
+  return (
+    <input
+    type="checkbox"
+    id={element._id}
+    checked={validaCheck}
+    onChange={(ev) => {
+      handlerListaAcompanhamento(ev.currentTarget.id);
+      //verifica(ev.currentTarget.id)
+      setValidaCheck(!validaCheck)
+      console.log(ev.currentTarget.checked);
+    }}
+  />
+  )
+}
