@@ -36,7 +36,6 @@ export const useUpdateProduto = () => {
         setValue("category", res.data.category._id);
         setValue("activePromotion", res.data.activePromotion);
         setValue("avaliable", res.data.avaliable);
-       
       })
       .catch((err) => {
         console.log(err);

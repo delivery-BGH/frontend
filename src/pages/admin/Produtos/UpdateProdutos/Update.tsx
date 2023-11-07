@@ -26,15 +26,14 @@ export function UpdateProduto() {
         console.log(err);
       });
 
-    axios.get(`http://localhost:3000/product/${params.id}`)
-      .then((res) => {
-        const parse = productSchema.safeParse(res.data);
-        if (parse.success) {
-          setProduto(parse.data);
-        } else {
-          console.log(parse);
-        }
-      });
+    axios.get(`http://localhost:3000/product/${params.id}`).then((res) => {
+      const parse = productSchema.safeParse(res.data);
+      if (parse.success) {
+        setProduto(parse.data);
+      } else {
+        console.log(parse);
+      }
+    });
   }, []);
 
   return (
@@ -48,7 +47,11 @@ export function UpdateProduto() {
         Loading
       </div>
       <div>
-        <Modal isOpen={open} setOpen={setOpen} acompanhamentos={produto?.sideDish}/>
+        <Modal
+          isOpen={open}
+          setOpen={setOpen}
+          acompanhamentos={produto?.sideDish}
+        />
       </div>
       <form onSubmit={handleSubmit(updateProduto)}>
         <div>

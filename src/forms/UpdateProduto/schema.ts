@@ -11,7 +11,7 @@ export const updateProductSchema = z.object({
   //   name: z.string(),
   //   description: z.string()
   // }),
-  
+
   category: z.string(),
   img: z.string(),
   // img: z.string().refine((value) => {
@@ -28,5 +28,3 @@ export const updateProductSchema = z.object({
   activePromotion: z.boolean(),
   avaliable: z.boolean(),
 });
-
-

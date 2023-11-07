@@ -9,7 +9,9 @@ export const productSchema = z.object({
   description: z.string(),
   promotionalPrice: z.number(),
   category: categoriaSchema,
-  sideDish: z.array(acompanhamentosSchema).transform((val) => val.length ? val : []),
+  sideDish: z
+    .array(acompanhamentosSchema)
+    .transform((val) => (val.length ? val : [])),
   img: z.string(),
   avaliable: z.boolean(),
   activePromotion: z.boolean(),

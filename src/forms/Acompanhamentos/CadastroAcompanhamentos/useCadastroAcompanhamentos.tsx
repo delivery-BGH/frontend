@@ -6,9 +6,8 @@ import { createAcompanhamentoFormSchema } from "./schema";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 export function useCreateAcompanhamento() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -23,9 +22,9 @@ export function useCreateAcompanhamento() {
     axios
       .post(`http://localhost:3000/sideDish`, { ...data })
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         alert("Acompanhamento cadastrado");
-        navigate('/sideDish')
+        navigate("/sideDish");
       })
       .catch((err) => {
         console.log(`Não foi possível cadastrar acompanhamento ${err}`);

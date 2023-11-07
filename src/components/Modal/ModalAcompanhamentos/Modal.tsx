@@ -11,39 +11,40 @@ import {
 import axios from "axios";
 import { use } from "i18next";
 import React, { useEffect, useState } from "react";
-import {  useParams } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 
 interface IModal {
   isOpen: boolean;
   setOpen: (isOpen: boolean) => void;
-  acompanhamentos: Array<Acompanhamento> | undefined
+  acompanhamentos: Array<Acompanhamento> | undefined;
 }
 
-export const Modal: React.FC<IModal> = ({ isOpen, setOpen, acompanhamentos }) => {
+export const Modal: React.FC<IModal> = ({
+  isOpen,
+  setOpen,
+  acompanhamentos,
+}) => {
   const [sideDishh, setSideDishh] = useState<Array<Acompanhamento>>();
-  const [lista, setLista] = useState<Array<string>>([])
-  const [validaCheck, setValidaCheck] = useState<boolean>()
-  
+  const [lista, setLista] = useState<Array<string>>([]);
+  const [validaCheck, setValidaCheck] = useState<boolean>();
+
   const params = useParams<{ id: string }>();
- 
+
   useEffect(() => {
     deliveryInstance
-        .get("/sideDish")
-        .then((res) => {
-            const parse = acompanhamentosSchema.array().safeParse(res.data);
-            if (parse.success) {
-                setSideDishh(parse.data);
-            } else {
-                console.log(parse);
-            }
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-
-    
-}, []);
+      .get("/sideDish")
+      .then((res) => {
+        const parse = acompanhamentosSchema.array().safeParse(res.data);
+        if (parse.success) {
+          setSideDishh(parse.data);
+        } else {
+          console.log(parse);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   /*const handler = (id: string) => {
     console.log("[Lista] - ", lista);
@@ -67,36 +68,30 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen, acompanhamentos }) =>
     if (existe) {
       const novoArr = lista.filter((item: string) => item != id);
       setLista(novoArr);
-      console.log(novoArr)
+      console.log(novoArr);
     } else {
       setLista([...lista, id]);
-      
     }
-  
   };
 
   const verifica = (id: string) => {
     const existe1 = lista.find((item) => item === id);
-    
-    if(existe1){
-      setValidaCheck(true)
+
+    if (existe1) {
+      setValidaCheck(true);
     } else {
-      setValidaCheck(false)
+      setValidaCheck(false);
     }
   };
 
-
-
- 
-
   const addSideDish = () => {
-    axios.put(`http://localhost:3000/product/${params.id}`, {sideDish: lista})
-    .then((res) => {
-      alert("Acompanhamento atualizando")
-      location.reload()
-    })
-   
-  }
+    axios
+      .put(`http://localhost:3000/product/${params.id}`, { sideDish: lista })
+      .then((res) => {
+        alert("Acompanhamento atualizando");
+        // location.reload()
+      });
+  };
 
   if (isOpen) {
     return (
@@ -108,22 +103,27 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen, acompanhamentos }) =>
           <h2>Selecione um acompanhamento</h2>
 
           <Card className="w-full">
-  {sideDishh?.map((element) => (
-    <Card key={element._id} className="flex items-center gap-2 p-2">
-     <InputAcompanhamento lista={lista} element={element} handlerListaAcompanhamento={handlerListaAcompanhamento} acompanhamentos={acompanhamentos}/>
-      <div>
-        <p>{element.name}</p>
-        <p>{element.description}</p>
-        <p>{formatPrice(element.price)}</p>
-      </div>
-    </Card>
-  ))}
-</Card>
-
+            {sideDishh?.map((element) => (
+              <Card key={element._id} className="flex items-center gap-2 p-2">
+                <InputAcompanhamento
+                  lista={lista}
+                  setLista={setLista}
+                  element={element}
+                  handlerListaAcompanhamento={handlerListaAcompanhamento}
+                  acompanhamentos={acompanhamentos}
+                />
+                <div>
+                  <p>{element.name}</p>
+                  <p>{element.description}</p>
+                  <p>{formatPrice(element.price)}</p>
+                </div>
+              </Card>
+            ))}
+          </Card>
 
           <div className="flex gap-2">
             <button
-             onClick={addSideDish}
+              onClick={addSideDish}
               style={{ padding: "0.7rem", color: "white" }}
               className="rounded bg-blue-400 text-lg"
             >
@@ -141,37 +141,53 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen, acompanhamentos }) =>
       </div>
     );
   } else {
-    return null; 
+    return null;
   }
 };
 interface Prop {
-  lista: any, 
-  element: any,
-  handlerListaAcompanhamento: (id: string) => void
-  acompanhamentos: Array<Acompanhamento> | undefined
-  
+  element: {
+    _id: string;
+    name: string;
+    description: string;
+    price: number;
+    avaliable: boolean;
+  };
+  handlerListaAcompanhamento: (id: string) => void;
+  acompanhamentos: Array<Acompanhamento> | undefined;
+  setLista: React.Dispatch<React.SetStateAction<string[]>>;
+  lista: string[];
 }
-const InputAcompanhamento = ({lista, element, handlerListaAcompanhamento, acompanhamentos}: Prop	) => {
+
+const InputAcompanhamento = ({
+  element,
+  handlerListaAcompanhamento,
+  acompanhamentos,
+  setLista,
+}: Prop) => {
   useEffect(() => {
-    
-    const x = acompanhamentos?.find((ac) => ac._id === element._id)
-    if(x){
-      setValidaCheck(true)
-      console.log("SE fuder gabriel")
+    const x = acompanhamentos?.find((ac) => ac._id === element._id);
+    if (x) {
+      setValidaCheck(true);
+      console.log("SE fuder gabriel");
     }
-  }, [acompanhamentos])
-  const [validaCheck, setValidaCheck] = useState<boolean>()
+
+    const k = acompanhamentos?.map((ac) => ac._id);
+    if (k) {
+      setLista(k);
+    }
+  }, [acompanhamentos]);
+
+  const [validaCheck, setValidaCheck] = useState<boolean>();
+
   return (
     <input
-    type="checkbox"
-    id={element._id}
-    checked={validaCheck}
-    onChange={(ev) => {
-      handlerListaAcompanhamento(ev.currentTarget.id);
-      //verifica(ev.currentTarget.id)
-      setValidaCheck(!validaCheck)
-      console.log(ev.currentTarget.checked);
-    }}
-  />
-  )
-}
+      type="checkbox"
+      id={element._id}
+      checked={validaCheck}
+      onChange={(ev) => {
+        handlerListaAcompanhamento(ev.currentTarget.id);
+        setValidaCheck(!validaCheck);
+      }}
+    />
+  );
+};
