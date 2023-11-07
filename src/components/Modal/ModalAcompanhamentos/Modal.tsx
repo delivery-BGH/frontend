@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Card } from "@/components/ui/card";
-
 import { formatPrice } from "@/helper/formtPrice";
 import { deliveryInstance } from "@/services/deliveryInstance";
 import {
@@ -9,7 +8,6 @@ import {
   acompanhamentosSchema,
 } from "@/validators/acompanhamento/Acompanhamento";
 import axios from "axios";
-import { use } from "i18next";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -26,7 +24,7 @@ export const Modal: React.FC<IModal> = ({
 }) => {
   const [sideDishh, setSideDishh] = useState<Array<Acompanhamento>>();
   const [lista, setLista] = useState<Array<string>>([]);
-  const [validaCheck, setValidaCheck] = useState<boolean>();
+  // const [validaCheck, setValidaCheck] = useState<boolean>();
 
   const params = useParams<{ id: string }>();
 
@@ -74,20 +72,20 @@ export const Modal: React.FC<IModal> = ({
     }
   };
 
-  const verifica = (id: string) => {
-    const existe1 = lista.find((item) => item === id);
+  // const verifica = (id: string) => {
+  //   const existe1 = lista.find((item) => item === id);
 
-    if (existe1) {
-      setValidaCheck(true);
-    } else {
-      setValidaCheck(false);
-    }
-  };
+  //   if (existe1) {
+  //     setValidaCheck(true);
+  //   } else {
+  //     setValidaCheck(false);
+  //   }
+  // };
 
   const addSideDish = () => {
     axios
       .put(`http://localhost:3000/product/${params.id}`, { sideDish: lista })
-      .then((res) => {
+      .then(() => {
         alert("Acompanhamento atualizando");
         // location.reload()
       });
