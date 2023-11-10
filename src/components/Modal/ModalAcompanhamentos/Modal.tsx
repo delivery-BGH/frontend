@@ -8,10 +8,11 @@ import {
   Acompanhamento,
   acompanhamentosSchema,
 } from "@/validators/acompanhamento/Acompanhamento";
+import { Produto, productSchema } from "@/validators/produto/Produto";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import {  useParams } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
+import InputModal from "./Input";
 
 interface IModal {
   isOpen: boolean;
@@ -20,28 +21,35 @@ interface IModal {
 
 export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
   const [sideDishh, setSideDishh] = useState<Array<Acompanhamento>>();
-  const [lista, setLista] = useState<Array<string>>([])
+  const [lista, setLista] = useState<Array<string>>([]);
+  const [produto, setProduto] = useState<Produto>();
 
-  
   const params = useParams<{ id: string }>();
- 
+
   useEffect(() => {
     deliveryInstance
-        .get("/sideDish")
-        .then((res) => {
-            const parse = acompanhamentosSchema.array().safeParse(res.data);
-            if (parse.success) {
-                setSideDishh(parse.data);
-            } else {
-                console.log(parse);
-            }
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+      .get("/sideDish")
+      .then((res) => {
+        const parse = acompanhamentosSchema.array().safeParse(res.data);
+        if (parse.success) {
+          setSideDishh(parse.data);
+        } else {
+          console.log(parse);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    
-}, []);
+      axios.get(`http://localhost:3000/product/${params.id}`).then((res) => {
+        const parse = productSchema.safeParse(res.data);
+        if (parse.success) {
+          setProduto(parse.data);
+        } else {
+          console.log(parse);
+        }
+      });
+  }, []);
 
   /*const handler = (id: string) => {
     console.log("[Lista] - ", lista);
@@ -65,7 +73,7 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
     if (existe) {
       const novoArr = lista.filter((item: string) => item != id);
       setLista(novoArr);
-      console.log(novoArr)
+      console.log(novoArr);
     } else {
       setLista([...lista, id]);
     }
@@ -73,16 +81,14 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
 
 
 
- 
-
   const addSideDish = () => {
-    axios.put(`http://localhost:3000/product/${params.id}`, {sideDish: lista})
-    .then((res) => {
-      alert("Acompanhamento atualizando")
-      location.reload()
-    })
-   
-  }
+    axios
+      .put(`http://localhost:3000/product/${params.id}`, { sideDish: lista })
+      .then((res) => {
+        alert("Acompanhamento atualizando");
+        location.reload();
+      });
+  };
 
   if (isOpen) {
     return (
@@ -94,23 +100,24 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
           <h2>Selecione um acompanhamento</h2>
 
           <Card className="w-full">
-            {sideDishh?.map((element) => (
+            {sideDishh?.map((element) => {
+
+              return (
               <Card key={element._id} className="flex items-center gap-2 p-2">
-                <input type="checkbox" id={element._id}   onClick={(ev) => {
-                  handlerListaAcompanhamento(ev.currentTarget.id)
-                  console.log(ev.currentTarget.checked); }} /> 
+                
+                <InputModal  element={element} acompanhamentos={produto?.sideDish} handlerListaAcompanhamento={handlerListaAcompanhamento} setLista={setLista} lista={lista}/>
                 <div>
                   <p>{element.name}</p>
                   <p>{element.description}</p>
                   <p>{formatPrice(element.price)}</p>
                 </div>
               </Card>
-            ))}
+            )})}
           </Card>
 
           <div className="flex gap-2">
             <button
-             onClick={addSideDish}
+              onClick={addSideDish}
               style={{ padding: "0.7rem", color: "white" }}
               className="rounded bg-blue-400 text-lg"
             >
@@ -128,6 +135,6 @@ export const Modal: React.FC<IModal> = ({ isOpen, setOpen }) => {
       </div>
     );
   } else {
-    return null; 
+    return null;
   }
 };
