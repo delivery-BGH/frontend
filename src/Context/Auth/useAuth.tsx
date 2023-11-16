@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { deliveryInstance } from "@/services/deliveryInstance";
+
+import { useApi } from "@/services/deliveryInstance";
 import { useState } from "react";
 
 const useAuth = () => {
   const [response, setResponse] = useState<any>();
   const [error, setError] = useState<any>();
   const [loading, setLoading] = useState(false);
-
+  const {deliveryInstance} = useApi()
   const login = async (data: { email: string; password: string }) => {
     setLoading(true);
     deliveryInstance

@@ -2,7 +2,8 @@
 
 import { Card } from "@/components/ui/card";
 import { formatPrice } from "@/helper/formtPrice";
-import { deliveryInstance } from "@/services/deliveryInstance";
+import { useApi } from "@/services/deliveryInstance";
+
 import {
   Acompanhamento,
   acompanhamentosSchema,
@@ -25,6 +26,7 @@ export const Modal: React.FC<IModal> = ({
   const [sideDishh, setSideDishh] = useState<Array<Acompanhamento>>();
   const [lista, setLista] = useState<Array<string>>([]);
   // const [validaCheck, setValidaCheck] = useState<boolean>();
+  const {deliveryInstance} = useApi()
 
   const params = useParams<{ id: string }>();
 

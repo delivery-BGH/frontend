@@ -4,7 +4,8 @@ import { createProductFormSchema } from "./shcema";
 import { createProductForm } from "./types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod/dist/zod.js";
-import { deliveryInstance } from "@/services/deliveryInstance";
+import { useApi } from "@/services/deliveryInstance";
+
 
 export const useCreateProduto = () => {
   const [loading, setLoading] = useState(false);
@@ -18,6 +19,7 @@ export const useCreateProduto = () => {
     mode: "all",
     criteriaMode: "all",
   });
+  const {deliveryInstance} = useApi()
 
   async function createProduto(
     data: any,

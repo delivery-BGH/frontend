@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { updateAcompanhamentoFormSchema } from "../Acompanhamentos/UpdateAcompanhamentos/schema";
+import { updateAcompanhamentoFormSchema } from "../../Acompanhamentos/UpdateAcompanhamentos/schema";
 
 export const updateProductSchema = z.object({
   name: z.string().nonempty("Nome obrigatório"),

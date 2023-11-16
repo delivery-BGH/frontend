@@ -14,8 +14,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useCreateProduto } from "@/forms/CadastroProduto/useCadastroProduto";
+
 import { cn } from "@/lib/utils";
+import { useCreateProduto } from "@/forms/Produtos/CadastroProduto/useCadastroProduto";
 
 const CadastroProdutos = () => {
   const {

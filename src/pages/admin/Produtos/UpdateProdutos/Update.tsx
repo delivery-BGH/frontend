@@ -1,11 +1,12 @@
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { useUpdateProduto } from "@/forms/UpdateProduto/useUpdateProduto";
+
 import axios from "axios";
 import { Modal } from "../../../../components/Modal/ModalAcompanhamentos/Modal.tsx";
 import { useParams } from "react-router-dom";
 import { Produto, productSchema } from "@/validators/produto/Produto.ts";
+import { useUpdateProduto } from "@/forms/Produtos/UpdateProduto/useUpdateProduto.tsx";
 
 export function UpdateProduto() {
   const { errors, handleSubmit, updateProduto, register, deleteProduto } =

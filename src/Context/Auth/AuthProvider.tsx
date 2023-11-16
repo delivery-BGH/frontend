@@ -3,13 +3,14 @@ import { User } from "../../types/User";
 import { AuthContext } from "./AuthContext";
 import { useState, useLayoutEffect } from "react";
 import jwt_decode from "jwt-decode";
-import { deliveryInstance } from "@/services/deliveryInstance";
+import { useApi } from "@/services/deliveryInstance";
+
 
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState<any>();
   const [loading, setLoading] = useState(false);
-
+  const {deliveryInstance} = useApi()
   useLayoutEffect(() => {
     loadUser();
   }, []);

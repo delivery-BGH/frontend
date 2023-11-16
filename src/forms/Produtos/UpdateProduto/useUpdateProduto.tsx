@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from "react";
 
 import { useForm } from "react-hook-form";
@@ -43,7 +44,7 @@ export const useUpdateProduto = () => {
       .finally(() => {});
   }, []);
 
-  async function updateProduto(data) {
+  async function updateProduto(data: any) {
     axios
       .put(`http://localhost:3000/product/${params.id}`, data)
       .then((res) => {
@@ -56,7 +57,7 @@ export const useUpdateProduto = () => {
       .finally(() => {});
   }
 
-  async function deleteProduto(data) {
+  async function deleteProduto(data: any) {
     const confirma = confirm("Deseja excluir esse produto?");
     if (confirma) {
       axios

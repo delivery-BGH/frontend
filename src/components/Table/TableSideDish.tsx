@@ -13,18 +13,19 @@ import {
 import { Link } from "react-router-dom";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { useApi } from "@/services/deliveryInstance";
 
 export default function TableSideDish() {
   const [acompanhamentos, setAcompanhamentos] = useState([]);
   const [valuePesquisa, setValuePesquisa] = useState("");
-
+  const {deliveryInstance} = useApi()
   useEffect(() => {
     getSideDish();
   }, []);
 
   const getSideDish = async () => {
     try {
-      axios.get("http://localhost:3000/sideDish").then((res) => {
+      deliveryInstance.get("http://localhost:3000/sideDish").then((res) => {
         setAcompanhamentos(res.data);
       });
     } catch (error) {

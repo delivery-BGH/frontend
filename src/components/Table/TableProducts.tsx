@@ -14,46 +14,34 @@ import {
 import { Input } from "../ui/input";
 import axios from "axios";
 import { Button } from "../ui/button";
+import { useApi } from "@/services/deliveryInstance";
+import useProduct from "@/forms/Produtos/PaginacaoProduto/useProduto";
 
 export default function TableProdutos() {
-  const [produtos, setProdutos] = useState([]);
-  const [valuePesquisa, setValuePesquisa] = useState("");
+  //const [produtos, setProdutos] = useState([]);
+  
+  //const {deliveryInstance} = useApi()
+  const {produtos, page, limit , setPage, setLimit, valuePesquisa, setValuePesquisa, submitPesquisa, limpaPesquisa} = useProduct()
 
   useEffect(() => {
-    getProdutos();
+    //getProdutos();
+    console.log(produtos)
   }, []);
 
-  const getProdutos = async () => {
+  /*const getProdutos = async () => {
     try {
-      const response = await fetch("http://localhost:3000/product");
-      if (!response.ok) {
-        throw new Error("Não foi possível buscar os produtos.");
-      }
-      const data = await response.json();
-      setProdutos(data);
+      deliveryInstance.get("http://localhost:3000/product").then((res) => {
+        setProdutos(res.data);
+      });
     } catch (error) {
-      console.error("Erro ao buscar os produtos:", error);
+      alert("Não foi possível buscar Produtos :(");
+      console.log(error);
     }
   };
+  */
 
-  const submitPesquisa = () => {
-    axios
-      .get(
-        `http://localhost:3000/product/product/query?filter=${valuePesquisa}`
-      )
-      .then((res) => {
-        console.log(res.data);
-        setProdutos(res.data);
-      })
-      .catch((err) => {
-        console.log(`Não foi possível buscar produto ${err}`);
-      });
-  };
+  
 
-  const limpaPesquisa = () => {
-    getProdutos();
-    setValuePesquisa("");
-  };
 
   return (
     <div className="flex flex-col gap-3">
@@ -119,6 +107,12 @@ export default function TableProdutos() {
           ))}
         </TableBody>
       </Table>
+      <div className="flex flex-row justify-center gap-3">
+      <button onClick={ () => { 
+       setPage(page > 1 ? page - 1: page)} }>Voltar</button>
+      <p>{page}</p>
+      <button onClick={ () => {setPage(page + 1) } }>Próximo</button>
+      </div>
     </div>
   );
 }
