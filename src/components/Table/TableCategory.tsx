@@ -13,18 +13,20 @@ import {
 import { Link } from "react-router-dom";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { useApi } from "@/services/deliveryInstance";
 
 export default function TableCategory() {
   const [categorias, setCategorias] = useState([]);
   const [valuePesquisa, setValuePesquisa] = useState("");
-
+  const {deliveryInstance} = useApi()
   useEffect(() => {
     getCategorys();
   }, []);
 
   const getCategorys = async () => {
     try {
-      axios.get("http://localhost:3000/category").then((res) => {
+      deliveryInstance
+      .get("http://localhost:3000/category").then((res) => {
         setCategorias(res.data);
       });
     } catch (error) {

@@ -17,6 +17,7 @@ import axios from "axios";
 
 import { cn } from "@/lib/utils";
 import { useCreateProduto } from "@/forms/Produtos/CadastroProduto/useCadastroProduto";
+import { useApi } from "@/services/deliveryInstance";
 
 const CadastroProdutos = () => {
   const {
@@ -30,11 +31,12 @@ const CadastroProdutos = () => {
   const [prom, setProm] = useState(false);
   const [card, setCard] = useState(false);
   const [status, setStatus] = useState(statusForm);
+  const {deliveryInstance} = useApi()
   const navigate = useNavigate();
   const [categories, setCategorias] = useState<Array<unknown>>();
 
   useEffect(() => {
-    axios
+    deliveryInstance
       .get("http://localhost:3000/category")
       .then((res) => {
         setCategorias(res.data);
