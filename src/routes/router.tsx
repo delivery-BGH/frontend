@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createBrowserRouter } from "react-router-dom";
 import CadastroCliente from "@/pages/CadastroCliente";
 import RootLayoutAdmin from "@/pages/admin/RootLayoutAdmin";
@@ -22,11 +23,18 @@ import { CadastroAcompanhamentos } from "@/pages/admin/Acompanhamentos/CadastroA
 import { UpdateAcompanhamentos } from "@/pages/admin/Acompanhamentos/UpdateAcompanhamentos/UpdateAcompanhamentos";
 import ListAcompanhamentos from "@/pages/admin/Acompanhamentos/ListAcompanhamentos/ListAcompanhamentos";
 
+
 export const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
   },
+
+  {
+    path: "/home",
+    element: <pagHome/>
+  },
+
   {
     path: "/",
     element: <RootLayoutAdmin />,
@@ -73,4 +81,6 @@ export const router = createBrowserRouter([
     path: "/cadastroCliente",
     element: <CadastroCliente />,
   },
+
+
 ]);
