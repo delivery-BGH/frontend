@@ -41,6 +41,9 @@ function Carosel() {
     setCurrentIndex(slideIndex);
   };
 
+  setInterval(()=> {
+    nextSlide()
+  }, 10000)
 
 
 

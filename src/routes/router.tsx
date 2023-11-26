@@ -22,7 +22,6 @@ import { CadastroAcompanhamentos } from "@/pages/admin/Acompanhamentos/CadastroA
 
 import { UpdateAcompanhamentos } from "@/pages/admin/Acompanhamentos/UpdateAcompanhamentos/UpdateAcompanhamentos";
 import ListAcompanhamentos from "@/pages/admin/Acompanhamentos/ListAcompanhamentos/ListAcompanhamentos";
-import { pagHome } from "@/pages/Home/pagHome/pagHome";
 import { PagHome } from "../pages/Home/pagHome/pagHome";
 
 export const router = createBrowserRouter([
